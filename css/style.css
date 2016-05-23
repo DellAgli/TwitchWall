@@ -1,0 +1,76 @@
+/*************/
+/* Main Page */
+/*************/
+
+body{
+  background-color: #000000;
+}
+
+.upper-row, .lower-row {
+  height: 50%;
+  padding: 0;
+  margin: 0 !important;
+}
+
+.col-div{
+  padding: 0 0 0 0 !important;
+}
+
+.stream-div{
+  height: 100%;
+}
+
+.stream-frame{
+  width: 100%;
+  height: 100%;
+}
+
+/***********/
+/* Buttons */
+/***********/
+
+.twitch-purple{
+  background-color: #6441A5;
+}
+
+.twitch-purple:hover{
+  background-color: #6441A5;
+}
+
+/***************/
+/* Setup Modal */
+/***************/
+
+.select-dropdown{
+  height: 45vh
+}
+
+/***************/
+/* About Modal */
+/***************/
+
+.portrait{
+  width:100%;
+  height: auto;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: black;
+  border-width: medium;;
+}
+
+.links-list li{
+  display: inline-block;
+  margin:10px;
+}
+
+.links-list li a{
+  background-color: #6441A5;
+}
+
+.links-list li a:hover{
+  background-color: #6441A5;
+}
+
+.about-row{
+  margin-bottom: 0;
+}
