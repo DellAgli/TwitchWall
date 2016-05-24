@@ -41,8 +41,21 @@ makeUrl = function(title){
 fillStreamWindows = function(){
   let topStreams = largestStreams(checkStreams(streamsList), 4);
   for(i=0; i<topStreams.length;i++){
-    $('#stream'+i).attr('src', makeUrl(topStreams[i]));
-  }
+    var options = {
+        height:'100%',
+        width:'100%',
+          quality:"low",
+          volume: 0,
+          channel: topStreams[i]
+               
+        };
+      var player = new Twitch.Player("stream"+i, options);
+
+      players[i]= player;
+    }
+
+
+  
 };
 
 

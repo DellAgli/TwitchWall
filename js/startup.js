@@ -7,6 +7,11 @@ $(document).ready(function(){
         streamsList = list.split(",");    
     else
         streamsList = [];
+
+    
     generateSelect();
 
-});
+
+    
+    players = [null,null,null,null];
+ });
