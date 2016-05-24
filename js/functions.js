@@ -39,7 +39,7 @@ makeUrl = function(title){
 };
 
 fillStreamWindows = function(){
-  let topStreams = largestStreams(checkStreams(STREAMS), 4);
+  let topStreams = largestStreams(checkStreams(streamsList), 4);
   for(i=0; i<topStreams.length;i++){
     $('#stream'+i).attr('src', makeUrl(topStreams[i]));
   }
@@ -47,7 +47,7 @@ fillStreamWindows = function(){
 
 
 generateSelect = function(){
-  let streams = STREAMS;
+  let streams = streamsList;
   let select = document.getElementById('edit-stream-select');
   select.innerHTML ='';
   let start = document.createElement('option')

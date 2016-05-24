@@ -60,16 +60,10 @@ body{
 
 .links-list li{
   display: inline-block;
-  margin:10px;
+  margin-left:10px;
+  margin-right:10px;
 }
 
-.links-list li a{
-  background-color: #6441A5;
-}
-
-.links-list li a:hover{
-  background-color: #6441A5;
-}
 
 .about-row{
   margin-bottom: 0;

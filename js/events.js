@@ -3,12 +3,18 @@ clickRefresh = function(){
 }
 
 clickAddStream = function(){
-  STREAMS.push($('#new-stream').val());
-  generateSelect();
+	if(streamsList.indexOf($('#new-stream').val()) === -1){
+		streamsList.push($('#new-stream').val());
+    Cookie.set('streams', streamsList);
+  	generateSelect();
+	}
+	$('#new-stream').val('')
+ 
 }
 
 clickRemoveStream= function(){
   let string = $('#edit-stream-select').find(':selected').text();
-  STREAMS.splice(STREAMS.indexOf(string), 1);
+  streamsList.splice(streamsList.indexOf(string), 1);
+  Cookie.set('streams', streamsList);
   generateSelect();
 }
