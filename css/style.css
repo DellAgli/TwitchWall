@@ -41,8 +41,22 @@ body{
 /* Setup Modal */
 /***************/
 
-.select-dropdown{
-  height: 45vh
+.checkbox-twitch-purple[type="checkbox"].filled-in:checked + label:after{
+     border: 2px solid #6441A5;
+     background-color: #6441A5;
+}
+
+.modal-stream-select .dropdown-content .disabled span,
+.number-stream-select .dropdown-content .disabled span,
+.quality-select .dropdown-content .disabled span
+ {
+  color: rgba(0,0,0,0.3);
+}
+
+.modal-stream-select .dropdown-content li span,
+.number-stream-select .dropdown-content li span,
+.quality-select .dropdown-content li span {
+  color: #6441A5;
 }
 
 /***************/

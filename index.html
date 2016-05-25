@@ -12,124 +12,173 @@
 
     <div class="col s6 col-div">
       <div class="stream-div" id="stream0">
-      
-    </div>
-  </div>
 
-  <div class="col s6 col-div">
-    <div class="stream-div" id="stream1">
-      
-  </div>
-</div>
-
-</div>
-<div class="row lower-row">
-
-  <div class="col s6 col-div">
-    <div class="stream-div" id="stream2">
-     
-  </div>
-</div>
-
-<div class="col s6 col-div">
-  <div class="stream-div" id="stream3">
-    
-</div>
-</div>
-
-</div>
-
-<div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
-  <a class="btn-floating btn-large twitch-purple" onclick="clickRefresh()">
-    <i class="fa fa-twitch" aria-hidden="true" id="twitch-logo"></i>    </a>
-    <ul>
-      <li><a class="btn-floating twitch-purple modal-trigger" href="#info-modal"><i class="fa fa-question" aria-hidden="true"></i></a></li>
-      <li><a class="btn-floating twitch-purple modal-trigger" href="#setup-modal"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
-    </ul>
-  </div>
-
-  <!--A Modal to set parameters for the site's funcationality-->
-
-  <div id="setup-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>Setup: Twitch Wall</h4>
-      <div class="row">
-      <div class="input-field col s6">
-        <h5>Add a Stream</h5>
-
-        <input id="new-stream" type="text" class="validate">
-        <a class="waves-effect waves-light btn-large twitch-purple" onClick="clickAddStream()">Add Stream</a>
       </div>
-      <div class="input-field col s6">
+    </div>
 
-      <h5>Remove a Stream</h5>
-        <select class="modal-stream-select" id="edit-stream-select">
-        </select>
-        <a class="waves-effect waves-light btn-large twitch-purple" onClick="clickRemoveStream()">Remove Stream</a>
+    <div class="col s6 col-div">
+      <div class="stream-div" id="stream1">
+
       </div>
+    </div>
+
+  </div>
+  <div class="row lower-row">
+
+    <div class="col s6 col-div">
+      <div class="stream-div" id="stream2">
+
       </div>
-    <div class="row">
-
     </div>
 
+    <div class="col s6 col-div">
+      <div class="stream-div" id="stream3">
 
+      </div>
     </div>
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat ">All Set!</a>
-    </div>
+
   </div>
 
-  <!--A Modal to  explain how to use the site-->
+  <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large twitch-purple" onclick="clickRefresh()">
+      <i class="fa fa-twitch" aria-hidden="true" id="twitch-logo"></i>    </a>
+      <ul>
+        <li><a class="btn-floating twitch-purple modal-trigger" href="#info-modal"><i class="fa fa-question" aria-hidden="true"></i></a></li>
+        <li><a class="btn-floating twitch-purple modal-trigger" href="#setup-modal"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
 
-  <div id="info-modal" class="modal">
-    <div class="modal-content">
-      <h4>What is Twitch Wall?</h4>
-      <p>
-        Twitch Wall is a platform for automatic curation of multiple Twitch.tv streams.
-        Simply tell us which streamers you are interested in watching and we will automatically fill the page with the top four viewed streamer.
+    <!--A Modal to set parameters for the site's funcationality-->
 
-      </p>
-      <h4>How Do I Use This Beautiful Contraption?</h4>
-      <p>
-        Hover over the Twitch logo in the bottom right-hand corner and click the gear.
-        Add the streams you enjoy watching.
-        Click the twitch logo to reload the page with your top streams.
-      </p>
+    <div id="setup-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
 
-      <h4>Who Is the Beautiful Creature Who Created This Miracle of a Website?</h4>
-      <div class="row about-row">
-        <div class="col s9">
-          <p>
-            That would be Anthony Dell'Agli. He is a handsome young man and aspiring software developer. (Plus, he's single <i> Ladies</i>)
-            Feel free to contact me at any of the platforms below and/or carrier pigeon.
-          </p>
-          <ul class="links-list">
-            <li> <a href= "mailto:anthony.dellagli@gmail.com" class="btn-floating btn-large waves-effect waves-light twitch-purple"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-            <li> <a href= "https://twitter.com/anthonydellagli" class="btn-floating btn-large waves-effect waves-light twitch-purple"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-            <li> <a href= "https://twitch.tv/dellagli" class="btn-floating btn-large waves-effect waves-light twitch-purple"><i class="fa fa-twitch" aria-hidden="true"></i></a></li>
-          </ul>
+        <h4>Setup: Twitch Wall</h4>
+        <div class="row">
+          <div class="input-field col s6">
+            <h5>Add a Stream</h5>
 
+            <input id="new-stream" type="text" class="validate">
+            <a class="waves-effect waves-light btn-large twitch-purple" onClick="clickAddStream()">Add Stream</a>
+          </div>
+          <div class="input-field col s6">
+            <h5>Remove a Stream</h5>
+            <select class="modal-stream-select" id="edit-stream-select">
+            </select>
+            <a class="waves-effect waves-light btn-large twitch-purple" onClick="clickRemoveStream()">Remove Stream</a>
+            <a class="waves-effect waves-light btn-large twitch-purple" onClick="clickClearStreams()">Clear</a>
+          </div>
         </div>
 
-        <div class="col s3">
-          <img class="portrait" src="media/portrait.png">
+        <div class="row">
+          <div class="col s4">
 
+            <input type="checkbox" class="filled-in checkbox-twitch-purple" id="sound0" onchange="changeSound()" />
+            <label for="sound0">Play sound on top stream</label>
 
+          </div>
+          <div class="col s4">
+
+            <input type="checkbox" class="filled-in checkbox-twitch-purple" id="auto-refresh" onchange="changeAutoRefresh()" />
+            <label for="auto-refresh">Auto Refresh every 5 minutes</label>
+
+          </div>
+          <div class="col s4">
+
+            <select class="quality-select" id="quality-select" onchange="changeQuality()">
+              <option selected disabled> Select stream quality </option>
+              <option setting="mobile">Mobile</option>
+              <option setting="low">Low</option>
+              <option setting="medium">Medium</option>
+              <option setting="high">High</option>
+            </select>
+
+          </div>
         </div>
+
+
+        <div class="row">
+          <div class="col s4">
+
+            <input type="checkbox" class="filled-in checkbox-twitch-purple" id="random-mode" onchange="changeRandomMode()" />
+            <label for="random-mode">Random Mode</label>
+
+          </div>
+          <div class="col s4">
+            <!--Currently just spacer -->
+            <input type="checkbox" class="filled-in checkbox-twitch-purple" disabled id="chat-toggle" onchange="changeChat()" />
+            <label for="chat-toggle">Show Chat</label>
+
+          </div>
+          <div class="col s4">
+          <select class="number-stream-select" id="quality-select" disabled  onchange="changeNumberStreams()">
+              <option selected disabled> Select number of streams </option>
+              <option setting="1">1</option>
+              <option setting="4">4</option>
+              <option setting="9">9</option>
+            </select>
+
+
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat ">All Set!</a>
       </div>
     </div>
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat ">Got It!</a>
-    </div>
+
+    <!--A Modal to  explain how to use the site-->
+
+    <div id="info-modal" class="modal">
+      <div class="modal-content">
+        <h4>What is Twitch Wall?</h4>
+        <p>
+          Twitch Wall is a platform for automatic curation of multiple Twitch.tv streams.
+          Simply tell us which streamers you are interested in watching and we will automatically fill the page with the top four viewed streamer.
+
+        </p>
+        <h4>How Do I Use This Beautiful Contraption?</h4>
+        <p>
+          Hover over the Twitch logo in the bottom right-hand corner and click the gear.
+          Add the streams you enjoy watching.
+          Click the twitch logo to reload the page with your top streams.
+        </p>
+
+        <h4>Who Is the Beautiful Creature Who Created This Miracle of a Website?</h4>
+        <div class="row about-row">
+          <div class="col s9">
+            <p>
+              That would be Anthony Dell'Agli. He is a handsome young man and aspiring software developer. (Plus, he's single <i> Ladies</i>)
+              Feel free to contact me at any of the platforms below and/or carrier pigeon.
+            </p>
+            <ul class="links-list">
+              <li> <a href= "mailto:anthony.dellagli@gmail.com" class="btn-floating btn-large waves-effect waves-light twitch-purple"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+              <li> <a href= "https://twitter.com/anthonydellagli" class="btn-floating btn-large waves-effect waves-light twitch-purple"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              <li> <a href= "https://twitch.tv/dellagli" class="btn-floating btn-large waves-effect waves-light twitch-purple"><i class="fa fa-twitch" aria-hidden="true"></i></a></li>
+            </ul>
+
+          </div>
+
+          <div class="col s3">
+            <img class="portrait" src="media/portrait.png">
 
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src= "http://player.twitch.tv/js/embed/v1.js"></script>
-    <script src="js/cookie.js"></script>
-    <script src="js/startup.js"></script>
-    <script src="js/functions.js"></script>
-    <script src="js/events.js"></script>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat ">Got It!</a>
+      </div>
 
-  </body>
-  <html>
+
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+      <script src= "http://player.twitch.tv/js/embed/v1.js"></script>
+      <script src="js/cookie.js"></script>
+      <script src="js/startup.js"></script>
+      <script src="js/functions.js"></script>
+      <script src="js/events.js"></script>
+
+    </body>
+    <html>

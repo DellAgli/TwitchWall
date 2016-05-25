@@ -34,33 +34,48 @@ largestStreams = function(streams, n){
   return results
 };
 
+randomStreams = function(streams, n){
+  let results = [];
+  for(i=0;i<n;i++){
+    let rIndex = Math.floor(Math.random()*streams.length);
+    results.push(streams[rIndex].name);
+    streams.splice(rIndex, 1)
+  }
+  console.log(results)
+  return results
+};
+
 makeUrl = function(title){
   return "http://player.twitch.tv/?channel=" + title;
 };
 
-fillStreamWindows = function(){
-  let topStreams = largestStreams(checkStreams(streamsList), 4);
-  for(i=0; i<topStreams.length;i++){
+fillStreamWindows = function(random){
+  let featuredStreams = []
+  if(random == 0){
+    featuredStreams = largestStreams(checkStreams(Options.streamsList), Options.numberStreams);
+  }
+  else{
+    featuredStreams = randomStreams(checkStreams(Options.streamsList), Options.numberStreams);
+  }
+  for(i=0; i<featuredStreams.length;i++){
     var options = {
         height:'100%',
         width:'100%',
-          quality:"low",
-          volume: 0,
-          channel: topStreams[i]
-               
+        quality:Options.quality,
+        channel: featuredStreams[i]    
         };
+
       var player = new Twitch.Player("stream"+i, options);
-
-      players[i]= player;
+      if(i == 0 & Options.sound0 == 1){
+        player.setVolume(1);
+      }
+      Options.players[i]= player;
     }
-
-
-  
 };
 
 
 generateSelect = function(){
-  let streams = streamsList;
+  let streams = Options.streamsList;
   let select = document.getElementById('edit-stream-select');
   select.innerHTML ='';
   let start = document.createElement('option')
@@ -76,4 +91,22 @@ generateSelect = function(){
     select.appendChild(element);
   }
   $('select').material_select();
+}
+
+importFollows = function(channel){
+  $.ajax({
+        type: "GET",
+        url: "https://api.twitch.tv/kraken/users/" + channel + "/follows/channels",
+        async: true,
+        success : function(r) {
+          if(r.follows){
+            for(i=0;i<r.follows.length;i++){
+              if(Options.streamsList.indexOf(r.follows[i].channel.display_name) === -1)
+                Options.streamsList.push(r.follows[i].channel.display_name);
+            }
+            Cookie.set('streams', Options.streamsList);
+            generateSelect();
+            };
+          }
+    });
 }
