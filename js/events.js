@@ -1,10 +1,19 @@
 clickRefresh = function(){
-  fillStreamWindows();
+  if(Options.numberStreams === 1){
+    $('#1-streams').toggleClass('hidden', false)
+    $('#4-streams').toggleClass('hidden', true)
+  }
+  else{
+    $('#1-streams').toggleClass('hidden', true)
+    $('#4-streams').toggleClass('hidden', false)
+  }
+  fillStreamWindows(Options.randomMode);
 }
 
 clickAddStream = function(){
   if($('#new-stream').val().substring(0,7) === "import:"){
-    importFollows($('#new-stream').val().split(':')[1])
+    let url = "https://api.twitch.tv/kraken/users/" + $('#new-stream').val().split(':')[1] + "/follows/channels"
+    importFollows(url)
   }
   else{
     if(Options.streamsList.indexOf($('#new-stream').val()) === -1){
@@ -13,9 +22,7 @@ clickAddStream = function(){
       generateSelect();
    }
   }
-	
 	$('#new-stream').val('')
- 
 }
 
 clickRemoveStream= function(){
@@ -42,19 +49,17 @@ changeSound = function(){
 
 changeAutoRefresh = function(){
   if($('#auto-refresh').is(':checked')){
-    Options.autoRefresh = setInterval(fillStreamWindows, 300000);
+    Options.autoRefresh = setInterval(fillStreamWindows, 300000, Options.randomMode);
   }
   else{
     window.clearInterval(Options.AutoRefesh);
     Options.AutoRefesh = null
- 
   }
 }
 
 changeQuality = function(){
-  console.log($('#quality-select option:selected').attr('setting'))
   Options.quality = $('#quality-select option:selected').attr('setting');
-  Cookie.set('quality', $('#quality-select option:selected').attr('setting'))
+  Cookie.set('quality', $('#quality-select option:selected').attr('setting'));
  }
 
  clickClearStreams = function(){
@@ -76,18 +81,30 @@ changeQuality = function(){
   }
  }
 
- changeNumberStreams = function(){
-  Options.numberStreams = $('#quality-select option:selected').attr('setting');
-  Cookie.set('numberStreams', $('#quality-select option:selected').attr('setting'))
- }
-
 changeChat = function(){
    if($('#chat-toggle').is(':checked')){
     Options.showChat = 1;
     Cookie.set('chat', 1)
+    editChat(Options.players[0].getChannel())
   }
   else{
     Options.showChat = 0;
     Cookie.set('chat', 0)
+    editChat(null);
   }
+}
+
+changeNumStreams = function(){
+  if($('#number-streams').is(':checked')){
+    Options.numberStreams = 1;
+    Cookie.set('numStreams', 1)
+  }
+  else{
+    Options.numberStreams = 4;
+    Cookie.set('numStreams', 4)
+  }
+  for(i-0;i<Options.players.length;i++){
+    Options.players[i].pause()
+  }
+   Options.players=[]
 }

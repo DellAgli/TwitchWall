@@ -1,6 +1,6 @@
 Options = {
 	streamsList: [],
-	players: [null,null,null,null], 
+	players: [], 
 	quality : 'medium',
 	sound0 : 1,
 	autoRefresh : null,
@@ -43,7 +43,7 @@ $(document).ready(function(){
     if(Options.showChat === 1){
     	$('#chat-toggle').attr('checked', true);
     }
-
+     $('.tooltipped').tooltip({delay: 50});
     generateSelect();
 
  });
