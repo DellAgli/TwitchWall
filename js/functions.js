@@ -1,22 +1,35 @@
-checkStreams = function(titles){
+/**********************\
+  Basic Functionality
+\**********************/
+
+refreshStreams = function(titles, method){
   let results = []
+  let calls = titles.length
   for(i=0;i<titles.length;i++){
     $.ajax({
       type: "GET",
       url: "https://api.twitch.tv/kraken/streams/" + titles[i],
-      async: false,
+      async: true,
       success : function(r) {
+        calls--;
         if(r.stream){
           results.push({
             name: r.stream.channel.name,
             viewers : r.stream.viewers
           });
-            //console.log(results);
+        }
+        if(calls===0){
+          console.log(results)
+          if(results.length === 0){
+            alert("Nobody is live. Add some more channels!")
+          }
+          else{
+            fillStreamWindows(method(results, Options.numberStreams))
           }
         }
-      });
+      }
+    });
   }
-  return results;
 };
 
 largestStreams = function(streams, n){
@@ -49,48 +62,39 @@ makeUrl = function(title){
   return "http://player.twitch.tv/?channel=" + title;
 };
 
-fillStreamWindows = function(random){
-  let featuredStreams = []
-  let currentLive = checkStreams(Options.streamsList);
-  if(currentLive.length === 0){
-    alert("Nobody is live. Add some more channels!")
+fillStreamWindows = function(featuredStreams){
+  console.log('Foo')
+  if(Options.players[0]){
+    console.log("yes");
+    for(i=0; i<featuredStreams.length;i++){
+      Options.players[i].setChannel(featuredStreams[i]);
+    }
   }
   else{
-    if(random == 0){
-      featuredStreams = largestStreams(currentLive, Options.numberStreams);
-    }
-    else{
-      featuredStreams = randomStreams(currentLive, Options.numberStreams);
-    }
-
-    if(Options.players[0]){
-      for(i=0; i<featuredStreams.length;i++){
-        Options.players[i].setChannel(featuredStreams[i]);
+    console.log(featuredStreams)
+    for(i=0; i<featuredStreams.length;i++){
+      var options = {
+        height:'100%',
+        width:'100%',
+        volume: 0,
+        quality:Options.quality,
+        channel: featuredStreams[i]    
+      };
+      var player = new Twitch.Player("stream" + Options.numberStreams + i, options);
+      if(Options.sound0&&i===0){
+        player.setVolume(1);
       }
-    }
-    else{
-      for(i=0; i<featuredStreams.length;i++){
-        var options = {
-          height:'100%',
-          width:'100%',
-          volume: 0,
-          quality:Options.quality,
-          channel: featuredStreams[i]    
-        };
-        var player = new Twitch.Player("stream" + Options.numberStreams + i, options);
-        if(Options.sound0&&i===0){
-          player.setVolume(1);
-        }
-        Options.players[i]= player;
-      }
-    }
-
-    if(Options.showChat){
-      editChat(featuredStreams[0])
+      Options.players[i]= player;
     }
   }
-  
-};
+
+  if(Options.showChat){
+    editChat(featuredStreams[0])
+  }
+}
+/*****************\
+  General Helpers
+\*****************/
 
 capitalizeFirst = function(s){
   return s.charAt(0).toUpperCase() + s.slice(1)
@@ -151,5 +155,12 @@ editChat = function(channel){
     $('#streams-div').toggleClass('s12',true );
     $('.fixed-action-btn').css('bottom', '45px')
 
+  }
+}
+
+pauseAll = function(){
+  for(i=0;i<Options.players.length;i++){
+    if(Options.players[i])
+      Options.players[i].pause();
   }
 }

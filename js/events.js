@@ -1,4 +1,5 @@
 clickRefresh = function(){
+  pauseAll();
   if(Options.numberStreams === 1){
     $('#1-streams').toggleClass('hidden', false)
     $('#4-streams').toggleClass('hidden', true)
@@ -7,7 +8,14 @@ clickRefresh = function(){
     $('#1-streams').toggleClass('hidden', true)
     $('#4-streams').toggleClass('hidden', false)
   }
-  fillStreamWindows(Options.randomMode);
+
+  if(Options.randomMode === 1){
+    refreshStreams(Options.streamsList, randomStreams);
+  }
+  else{
+    refreshStreams(Options.streamsList, largestStreams);
+  }
+ // checkStreams();
 }
 
 clickAddStream = function(){
@@ -60,6 +68,7 @@ changeAutoRefresh = function(){
 changeQuality = function(){
   Options.quality = $('#quality-select option:selected').attr('setting');
   Cookie.set('quality', $('#quality-select option:selected').attr('setting'));
+
  }
 
  clickClearStreams = function(){
