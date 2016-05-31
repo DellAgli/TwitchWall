@@ -1,8 +1,12 @@
 clickRefresh = function(){
-  pauseAll();
+  if(Options.justStarted){
+    $('.stream-div').empty();
+    Options.justStarted = false;
+  }
   if(Options.numberStreams === 1){
     $('#1-streams').toggleClass('hidden', false)
     $('#4-streams').toggleClass('hidden', true)
+    destroyExtraPlayers();
   }
   else{
     $('#1-streams').toggleClass('hidden', true)
@@ -15,7 +19,6 @@ clickRefresh = function(){
   else{
     refreshStreams(Options.streamsList, largestStreams);
   }
- // checkStreams();
 }
 
 clickAddStream = function(){
@@ -57,7 +60,7 @@ changeSound = function(){
 
 changeAutoRefresh = function(){
   if($('#auto-refresh').is(':checked')){
-    Options.autoRefresh = setInterval(fillStreamWindows, 300000, Options.randomMode);
+    Options.autoRefresh = setInterval(clickRefresh, 300000);
   }
   else{
     window.clearInterval(Options.AutoRefesh);

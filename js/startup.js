@@ -7,6 +7,7 @@ Options = {
 	randomMode : 0,
 	numberStreams: 4,
 	showChat: 0,
+    justStarted: true,
 }
 
 
@@ -20,7 +21,7 @@ $(document).ready(function(){
     let quality = Cookie.get('quality');
     if(quality)
     	Options.quality= quality;
-	let numberStreams = Cookie.get('numberStreams');
+	let numberStreams = Cookie.get('numStreams');
     if(numberStreams)
     	Options.numberStreams= parseInt(numberStreams);
 

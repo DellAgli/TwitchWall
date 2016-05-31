@@ -19,7 +19,6 @@ refreshStreams = function(titles, method){
           });
         }
         if(calls===0){
-          console.log(results)
           if(results.length === 0){
             alert("Nobody is live. Add some more channels!")
           }
@@ -63,15 +62,12 @@ makeUrl = function(title){
 };
 
 fillStreamWindows = function(featuredStreams){
-  console.log('Foo')
   if(Options.players[0]){
-    console.log("yes");
     for(i=0; i<featuredStreams.length;i++){
       Options.players[i].setChannel(featuredStreams[i]);
     }
   }
   else{
-    console.log(featuredStreams)
     for(i=0; i<featuredStreams.length;i++){
       var options = {
         height:'100%',
@@ -147,12 +143,15 @@ editChat = function(channel){
     $('#chat-div').toggleClass('hidden', false);
     $('#streams-div').toggleClass('s9', true);
     $('#streams-div').toggleClass('s12',false);
-    $('.fixed-action-btn').css('bottom', '145px')
+    $('.fixed-action-btn').css('bottom', '0px')
+    $('.fixed-action-btn').css('top', '20px')
+
   }
   else{
     $('#chat-div').toggleClass('hidden', true);
     $('#streams-div').toggleClass('s9', false);
     $('#streams-div').toggleClass('s12',true );
+    $('.fixed-action-btn').css('top', '0px')
     $('.fixed-action-btn').css('bottom', '45px')
 
   }
@@ -162,5 +161,12 @@ pauseAll = function(){
   for(i=0;i<Options.players.length;i++){
     if(Options.players[i])
       Options.players[i].pause();
+  }
+}
+
+destroyExtraPlayers = function(){
+  for(i=1;i<4;i++){
+    if(Options.players[i])
+      Options.players[i].destroy();
   }
 }
