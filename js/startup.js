@@ -24,6 +24,9 @@ $(document).ready(function(){
 	let numberStreams = Cookie.get('numStreams');
     if(numberStreams)
     	Options.numberStreams= parseInt(numberStreams);
+    if(Options.numberStreams === 1){
+        $('#number-streams').attr('checked', true);
+    }
 
     let sound0 = Cookie.get('sound0');
     if(sound0)
