@@ -93,6 +93,14 @@ body{
   color:#000000;
 }
 
+.modal-stream-select .select-dropdown{
+  height:40vh;
+}
+
+.btn-large{
+  margin-bottom: 4px;
+}
+
 
 /***************/
 /* About Modal */

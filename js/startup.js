@@ -8,6 +8,7 @@ Options = {
 	numberStreams: 4,
 	showChat: 0,
     justStarted: true,
+    currentNumberStreams : 0
 }
 
 
@@ -27,7 +28,6 @@ $(document).ready(function(){
     if(Options.numberStreams === 1){
         $('#number-streams').attr('checked', true);
     }
-
     let sound0 = Cookie.get('sound0');
     if(sound0)
     	Options.sound0 = parseInt(sound0);
@@ -50,5 +50,9 @@ $(document).ready(function(){
      $('.tooltipped').tooltip({delay: 50});
     generateSelect();
 
+    if(document.location.hash){
+        let list = document.location.hash.slice(1).split(',');
+        startupFill(list.length, list);
+    }
  });
 

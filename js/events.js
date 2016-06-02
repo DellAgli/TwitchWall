@@ -3,14 +3,20 @@ clickRefresh = function(){
     $('.stream-div').empty();
     Options.justStarted = false;
   }
+  let oldNumberStreams = Options.currentNumberStreams; 
   if(Options.numberStreams === 1){
     $('#1-streams').toggleClass('hidden', false)
     $('#4-streams').toggleClass('hidden', true)
-    destroyExtraPlayers();
+    Options.currentNumberStreams = 1;
   }
   else{
     $('#1-streams').toggleClass('hidden', true)
     $('#4-streams').toggleClass('hidden', false)
+    Options.currentNumberStreams = 4;
+  }
+
+  if(Options.currentNumberStreams !== oldNumberStreams){
+    destroyPlayers();
   }
 
   if(Options.randomMode === 1){
@@ -34,6 +40,7 @@ clickAddStream = function(){
    }
   }
 	$('#new-stream').val('')
+  sortChannels();
 }
 
 clickRemoveStream= function(){
@@ -118,5 +125,4 @@ changeNumStreams = function(){
   for(i-0;i<Options.players.length;i++){
     Options.players[i].pause()
   }
-   Options.players=[]
 }
