@@ -1,57 +1,56 @@
 /**********************\
   Basic Functionality
-\**********************/
+  \**********************/
 
-refreshStreams = function(titles, method){
-  let results = []
-  let calls = titles.length
-  for(i=0;i<titles.length;i++){
-    $.ajax({
-      type: "GET",
-      url: "https://api.twitch.tv/kraken/streams/" + titles[i],
-      async: true,
-      success : function(r) {
-        calls--;
-        if(r.stream){
-          results.push({
-            name: r.stream.channel.name,
-            viewers : r.stream.viewers
-          });
-        }
-        if(calls===0){
-          console.log(results)
-          if(results.length === 0){
-            alert("Nobody is live. Add some more channels!")
+  refreshStreams = function(titles, method){
+    let results = []
+    let calls = titles.length
+    for(i=0;i<titles.length;i++){
+      $.ajax({
+        type: "GET",
+        url: "https://api.twitch.tv/kraken/streams/" + titles[i],
+        async: true,
+        success : function(r) {
+          calls--;
+          if(r.stream){
+            results.push({
+              name: r.stream.channel.name,
+              viewers : r.stream.viewers
+            });
           }
-          else{
-            fillStreamWindows(method(results, Options.numberStreams))
+          if(calls===0){
+            if(results.length === 0){
+              alert("Nobody is live. Add some more channels!")
+            }
+            else{
+              fillStreamWindows(method(results, Options.numberStreams))
+            }
           }
         }
-      }
-    });
-  }
-};
-
-largestStreams = function(streams, n){
-  let results = [];
-  for(i=0;i<n;i++){
-    let largest = 0;
-    for(j=1;j<streams.length;j++){
-      if(streams[largest].viewers<streams[j].viewers){
-        largest = j;
-      }
+      });
     }
-    results.push(streams[largest].name);
-    streams[largest].viewers = -1;
-  }
-  return results
-};
+  };
 
-randomStreams = function(streams, n){
-  let results = [];
-  for(i=0;i<n;i++){
-    let rIndex = Math.floor(Math.random()*streams.length);
-    results.push(streams[rIndex].name);
+  largestStreams = function(streams, n){
+    let results = [];
+    for(i=0;i<n;i++){
+      let largest = 0;
+      for(j=1;j<streams.length;j++){
+        if(streams[largest].viewers<streams[j].viewers){
+          largest = j;
+        }
+      }
+      results.push(streams[largest].name);
+      streams[largest].viewers = -1;
+    }
+    return results
+  };
+
+  randomStreams = function(streams, n){
+    let results = [];
+    for(i=0;i<n;i++){
+      let rIndex = Math.floor(Math.random()*streams.length);
+      results.push(streams[rIndex].name);
     if(streams.length!==1) //if only one left, dont' remove
       streams.splice(rIndex, 1)
   }
@@ -63,30 +62,27 @@ makeUrl = function(title){
 };
 
 fillStreamWindows = function(featuredStreams){
-  console.log('Foo')
-  if(Options.players[0]){
-    console.log("yes");
     for(i=0; i<featuredStreams.length;i++){
-      Options.players[i].setChannel(featuredStreams[i]);
-    }
-  }
-  else{
-    console.log(featuredStreams)
-    for(i=0; i<featuredStreams.length;i++){
-      var options = {
-        height:'100%',
-        width:'100%',
-        volume: 0,
-        quality:Options.quality,
-        channel: featuredStreams[i]    
-      };
-      var player = new Twitch.Player("stream" + Options.numberStreams + i, options);
-      if(Options.sound0&&i===0){
-        player.setVolume(1);
+      if(Options.players[i]){
+        Options.players[i].setChannel(featuredStreams[i])
       }
-      Options.players[i]= player;
+      else{
+        var options = {
+          height:'100%',
+          width:'100%',
+          volume: 0,
+          quality:Options.quality,
+          channel: featuredStreams[i]    
+        };
+        var player = new Twitch.Player("stream" + Options.numberStreams + i, options);
+        if(Options.sound0&&i===0){
+          player.setVolume(1);
+        }
+        Options.players[i]= player;
+      }
+      
     }
-  }
+  
 
   if(Options.showChat){
     editChat(featuredStreams[0])
@@ -94,10 +90,10 @@ fillStreamWindows = function(featuredStreams){
 }
 /*****************\
   General Helpers
-\*****************/
+  \*****************/
 
-capitalizeFirst = function(s){
-  return s.charAt(0).toUpperCase() + s.slice(1)
+  capitalizeFirst = function(s){
+    return s.charAt(0).toUpperCase() + s.slice(1)
 }//function for quality select
 
 generateSelect = function(){
@@ -147,12 +143,15 @@ editChat = function(channel){
     $('#chat-div').toggleClass('hidden', false);
     $('#streams-div').toggleClass('s9', true);
     $('#streams-div').toggleClass('s12',false);
-    $('.fixed-action-btn').css('bottom', '145px')
+    $('.fixed-action-btn').css('bottom', '0px')
+    $('.fixed-action-btn').css('top', '20px')
+
   }
   else{
     $('#chat-div').toggleClass('hidden', true);
     $('#streams-div').toggleClass('s9', false);
     $('#streams-div').toggleClass('s12',true );
+    $('.fixed-action-btn').css('top', '0px')
     $('.fixed-action-btn').css('bottom', '45px')
 
   }
@@ -163,4 +162,52 @@ pauseAll = function(){
     if(Options.players[i])
       Options.players[i].pause();
   }
+}
+
+destroyPlayers = function(){
+  for(i=0;i<Options.players.length;i++){
+    if(Options.players[i])
+      Options.players[i].destroy(); 
+      Options.players[i] = null
+  }
+}
+
+sortChannels = function(){
+  Options.streamsList.sort();
+  generateSelect()
+}
+
+startupFill = function(n, list){
+  $('.stream-div').empty();
+  Options.justStarted = false;
+  let numberStreams = n;
+  if(n===1){
+    $('#1-streams').toggleClass('hidden', false)
+    $('#4-streams').toggleClass('hidden', true)
+        Options.currentNumberStreams = 1;
+
+  }
+  else{
+    $('#1-streams').toggleClass('hidden', true)
+    $('#4-streams').toggleClass('hidden', false)
+    Options.currentNumberStreams = 4;
+
+    numberStreams = 4;
+  }
+  for(i=0; i<n;i++){
+    var options = {
+      height:'100%',
+      width:'100%',
+      volume: 0,
+      quality:Options.quality,
+      channel: list[i]    
+    };
+    var player = new Twitch.Player("stream" + numberStreams + i, options);
+    if(Options.sound0&&i===0){
+      player.setVolume(1);
+    }
+    Options.players[i]= player;
+  }
+
+
 }

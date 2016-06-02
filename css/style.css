@@ -50,6 +50,11 @@ body{
   padding: 0 0 0 0 !important;
 }
 
+.stream-div h1, .stream-div p{
+  color: #FFF;
+  text-indent: 5%
+}
+
 /***********/
 /* Buttons */
 /***********/
@@ -86,6 +91,14 @@ body{
 
 .setup-label{
   color:#000000;
+}
+
+.modal-stream-select .select-dropdown{
+  height:40vh;
+}
+
+.btn-large{
+  margin-bottom: 4px;
 }
 
 
