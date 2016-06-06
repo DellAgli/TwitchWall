@@ -71,6 +71,10 @@ body{
 /* Setup Modal */
 /***************/
 
+.setup-top{
+  margin-bottom: 10%;
+}
+
 .checkbox-twitch-purple[type="checkbox"].filled-in:checked + label:after{
      border: 2px solid #6441A5;
      background-color: #6441A5;
@@ -90,7 +94,7 @@ body{
 }
 
 .setup-label{
-  color:#000000;
+  color:#000000!important;
 }
 
 .modal-stream-select .select-dropdown{

@@ -6,16 +6,18 @@
     let results = []
     let calls = titles.length
     for(i=0;i<titles.length;i++){
+      let p = titles[i].priority;
       $.ajax({
         type: "GET",
-        url: "https://api.twitch.tv/kraken/streams/" + titles[i],
+        url: "https://api.twitch.tv/kraken/streams/" + titles[i].name,
         async: true,
         success : function(r) {
           calls--;
           if(r.stream){
             results.push({
               name: r.stream.channel.name,
-              viewers : r.stream.viewers
+              viewers : r.stream.viewers,
+              priority : p
             });
           }
           if(calls===0){
@@ -108,8 +110,8 @@ generateSelect = function(){
 
   for(i=0;i<streams.length;i++){
     let element = document.createElement('option');
-    element.textContent = streams[i];
-    element.value = streams[i];
+    element.textContent = streams[i].name;
+    element.value = streams[i].name;
     select.appendChild(element);
   }
   $('#quality-select option[selected]').text("Select Stream Quality: " + capitalizeFirst(Options.quality))
@@ -125,7 +127,10 @@ importFollows = function(url){
       if(r.follows.length>0){
         for(i=0;i<r.follows.length;i++){
           if(Options.streamsList.indexOf(r.follows[i].channel.display_name) === -1)
-            Options.streamsList.push(r.follows[i].channel.display_name);
+            Options.streamsList.push({
+              name: r.follows[i].channel.display_name,
+              priority: 0
+            })
         }
         if(r._links.next)
           importFollows(r._links.next)
@@ -172,11 +177,6 @@ destroyPlayers = function(){
   }
 }
 
-sortChannels = function(){
-  Options.streamsList.sort();
-  generateSelect()
-}
-
 startupFill = function(n, list){
   $('.stream-div').empty();
   Options.justStarted = false;
@@ -208,6 +208,28 @@ startupFill = function(n, list){
     }
     Options.players[i]= player;
   }
+}
 
+indexOfStream = function(name){
+  let index = -1
+  for(i=0;i<Options.streamsList.length;i++){
+    if(Options.streamsList[i].name === name){
+      index = i;
+      break
+    }
+  }
+  return index;
+}
 
+setPriority = function(name, value){
+  let index = indexOfStream(name);
+  Options.streamsList[index].priority = value
+}
+
+saveStreams = function(){
+    //saveStreams to cookies with priority
+}
+
+loadStreams = function(){
+    //loadStreams from cookies with priority
 }

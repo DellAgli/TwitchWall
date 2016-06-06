@@ -97,7 +97,7 @@
     <div class="modal-content">
 
       <h4>Setup: Twitch Wall</h4>
-      <div class="row">
+      <div class="row setup-top">
         <div class="input-field col s6">
           <h5>Add a Stream</h5>
 
@@ -105,11 +105,14 @@
           <a class="waves-effect waves-light btn-large twitch-purple tooltipped" onClick="clickAddStream()" data-position="right" data-delay="200" data-tooltip="Type 'import:{YOUR_CHANNEL_NAME}' to import all the channels you follow.">Add Stream</a>
         </div>
         <div class="input-field col s6">
-          <h5>Remove a Stream</h5>
-          <select class="modal-stream-select" id="edit-stream-select">
+          <h5>Edit a Stream</h5>
+          <select class="modal-stream-select" id="edit-stream-select" onchange="loadStreamPriority()">
           </select>
           <a class="waves-effect waves-light btn-large twitch-purple" onClick="clickRemoveStream()">Remove Stream</a>
           <a class="waves-effect waves-light btn-large twitch-purple" onClick="clickClearStreams()">Clear</a>
+
+          <input type="checkbox" class="filled-in checkbox-twitch-purple" id="priority-select" onchange="changePriority()" />
+          <label class="setup-label" for="priority-select">High Priority</label>
         </div>
       </div>
 

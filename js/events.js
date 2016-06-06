@@ -33,19 +33,21 @@ clickAddStream = function(){
     importFollows(url)
   }
   else{
-    if(Options.streamsList.indexOf($('#new-stream').val()) === -1){
-      Options.streamsList.push($('#new-stream').val());
-      Cookie.set('streams', Options.streamsList);
+    if(indexOfStream($('#new-stream').val()) === -1){
+      Options.streamsList.push({
+        name: $('#new-stream').val(),
+        priority: 0
+      });
+      saveStreams();
       generateSelect();
    }
   }
 	$('#new-stream').val('')
-  sortChannels();
 }
 
 clickRemoveStream= function(){
   let string = $('#edit-stream-select').find(':selected').text();
-  Options.streamsList.splice(Options.streamsList.indexOf(string), 1);
+  Options.streamsList.splice(indexOfStream(string), 1);
   Cookie.set('streams', Options.streamsList);
   generateSelect();
 }
@@ -125,4 +127,31 @@ changeNumStreams = function(){
   for(i-0;i<Options.players.length;i++){
     Options.players[i].pause()
   }
+}
+
+changePriority = function(){
+  if($('#priority-select').is(':checked')){
+    setPriority($('#edit-stream-select').find(':selected').text(),1)
+  }
+  else{
+    setPriority($('#edit-stream-select').find(':selected').text(),0)
+  }
+}
+
+loadStreamPriority = function(){
+    let value = $('#edit-stream-select').find(':selected').text();
+    let index = indexOfStream(value);
+    let priority = Options.streamsList[index].priority;
+    if(priority === 1){
+      console.log($('#priority-select'))
+      $('#priority-select').prop('checked', true)
+    }
+    else{
+      console.log('uncheck')
+      $('#priority-select').prop('checked', false)
+
+
+    }
+
+
 }

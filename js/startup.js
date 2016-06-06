@@ -16,7 +16,7 @@ $(document).ready(function(){
     $('.modal-trigger').leanModal();
     let list = Cookie.get('streams');
     if(list)
-        Options.streamsList = list.split(",");    
+        loadStreams();   
     else
         Options.streamsList = [];
     let quality = Cookie.get('quality');
@@ -56,3 +56,33 @@ $(document).ready(function(){
     }
  });
 
+TestStreams = [
+    {
+    name: "",
+    priority : 0
+    },
+    {
+    name: "",
+    priority : 0
+    },
+    {
+    name: "",
+    priority : 0
+    },
+    {
+    name: "",
+    priority : 0
+    },
+    {
+    name: "",
+    priority : 0
+    },
+    {
+    name: "",
+    priority : 0
+    },
+    {
+    name: "",
+    priority : 0
+    },
+]
