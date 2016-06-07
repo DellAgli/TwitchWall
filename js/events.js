@@ -147,7 +147,6 @@ loadStreamPriority = function(){
       $('#priority-select').prop('checked', true)
     }
     else{
-      console.log('uncheck')
       $('#priority-select').prop('checked', false)
 
 

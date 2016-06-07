@@ -34,27 +34,43 @@
   };
 
   largestStreams = function(streams, n){
+    let lists = splitByPriority(streams);
     let results = [];
+    let p = 1;
     for(i=0;i<n;i++){
       let largest = 0;
-      for(j=1;j<streams.length;j++){
-        if(streams[largest].viewers<streams[j].viewers){
+      if(lists[1].length > 0)
+        p = 1;
+      else
+        p=0;
+      for(j=0;j<lists[p].length;j++){
+        if(lists[p][j].viewers>lists[p][largest].viewers)
           largest = j;
-        }
       }
-      results.push(streams[largest].name);
-      streams[largest].viewers = -1;
+      results.push(lists[p][largest].name);
+      lists[p].splice(largest, 1)
     }
     return results
   };
 
   randomStreams = function(streams, n){
+    let lists = splitByPriority(streams);
     let results = [];
+    let p = 1;
     for(i=0;i<n;i++){
-      let rIndex = Math.floor(Math.random()*streams.length);
-      results.push(streams[rIndex].name);
-    if(streams.length!==1) //if only one left, dont' remove
-      streams.splice(rIndex, 1)
+      if(lists[1].length >0)
+        p=1;
+      else
+        p=0;
+      if(lists[0] || lists[1]){
+      let rIndex = Math.floor(Math.random()*lists[p].length);
+      results.push(lists[p][rIndex].name);
+      lists[p].splice(rIndex,1)
+      }
+      else{ //if we run out, reuse the current results
+      let rIndex = Math.floor(Math.random()*results.length);
+      results.push(results[rIndex]);
+      }
   }
   return results
 };
@@ -79,6 +95,9 @@ fillStreamWindows = function(featuredStreams){
         var player = new Twitch.Player("stream" + Options.numberStreams + i, options);
         if(Options.sound0&&i===0){
           player.setVolume(1);
+        }
+        else{
+          player.setVolume(0)
         }
         Options.players[i]= player;
       }
@@ -222,8 +241,19 @@ indexOfStream = function(name){
 }
 
 setPriority = function(name, value){
-  let index = indexOfStream(name);
-  Options.streamsList[index].priority = value
+  Options.streamsList[indexOfStream(name)].priority = value
+}
+
+splitByPriority = function(list){
+  let p0 = [];
+  let p1 = [];
+  for(i=0;i<list.length;i++){
+    if(list[i].priority === 1)
+      p1.push(list[i]);
+    else
+      p0.push(list[i]);
+  }
+  return [p0,p1]
 }
 
 saveStreams = function(){
