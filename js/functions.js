@@ -156,9 +156,6 @@ importFollows = function(url){
       }
     }
   });
-
-  Cookie.set('streams', Options.streamsList);
-  generateSelect();
 }
 
 editChat = function(channel){
@@ -257,9 +254,21 @@ splitByPriority = function(list){
 }
 
 saveStreams = function(){
-    //saveStreams to cookies with priority
+  let strArray = [];
+  for(i=0;i<Options.streamsList.length;i++){
+    let str = Options.streamsList[i].priority +
+              Options.streamsList[i].name;
+    strArray.push(str)
+  }
+  Cookie.set('streams', strArray)
 }
 
 loadStreams = function(){
-    //loadStreams from cookies with priority
+    let strArray = Cookie.get('streams').split(',');
+    for(i=0;i<strArray.length;i++){
+      Options.streamsList.push({
+        name: strArray[i].slice(1),
+        priority:parseInt(strArray[i].slice(0,1))
+      })
+    }
 }

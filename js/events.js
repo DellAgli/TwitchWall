@@ -38,17 +38,18 @@ clickAddStream = function(){
         name: $('#new-stream').val(),
         priority: 0
       });
-      saveStreams();
-      generateSelect();
+
    }
   }
-	$('#new-stream').val('')
+	$('#new-stream').val('');
+  saveStreams();
+  generateSelect();
 }
 
 clickRemoveStream= function(){
   let string = $('#edit-stream-select').find(':selected').text();
   Options.streamsList.splice(indexOfStream(string), 1);
-  Cookie.set('streams', Options.streamsList);
+  saveStreams();
   generateSelect();
 }
 
@@ -86,7 +87,7 @@ changeQuality = function(){
  clickClearStreams = function(){
   if(confirm("Are you sure you want to clear all the streams?")){
      Options.streamsList = [];
-      Cookie.streams = [];
+      saveStreams()
       generateSelect();
   }
  }
@@ -136,6 +137,7 @@ changePriority = function(){
   else{
     setPriority($('#edit-stream-select').find(':selected').text(),0)
   }
+  saveStreams();
 }
 
 loadStreamPriority = function(){
@@ -143,13 +145,10 @@ loadStreamPriority = function(){
     let index = indexOfStream(value);
     let priority = Options.streamsList[index].priority;
     if(priority === 1){
-      console.log($('#priority-select'))
       $('#priority-select').prop('checked', true)
     }
     else{
       $('#priority-select').prop('checked', false)
-
-
     }
 
 

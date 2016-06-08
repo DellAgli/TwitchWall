@@ -98,7 +98,7 @@ body{
 }
 
 .modal-stream-select .select-dropdown{
-  height:40vh;
+  max-height:40vh;
 }
 
 .btn-large{
