@@ -81,7 +81,7 @@ changeAutoRefresh = function(){
 changeQuality = function(){
   Options.quality = $('#quality-select option:selected').attr('setting');
   Cookie.set('quality', $('#quality-select option:selected').attr('setting'));
-
+  setQualities(Options.quality)
  }
 
  clickClearStreams = function(){

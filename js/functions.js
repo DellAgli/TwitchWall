@@ -276,3 +276,12 @@ loadStreams = function(){
       })
     }
 }
+
+setQualities = function(level){
+  for(i=0;i<Options.players.length;i++){
+    if(Options.players[i]){
+      console.log(level)
+      Options.players[i].setQuality(level)
+    }
+  }
+}
