@@ -48,12 +48,14 @@ $(document).ready(function(){
     	$('#chat-toggle').attr('checked', true);
     }
      $('.tooltipped').tooltip({delay: 50});
-    generateSelect();
+    
 
     if(document.location.hash){
         let list = document.location.hash.slice(1).split(',');
         startupFill(list.length, list);
     }
+
+    generateSelect();
  });
 
 TestStreams = [

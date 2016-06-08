@@ -153,6 +153,10 @@ importFollows = function(url){
         }
         if(r._links.next)
           importFollows(r._links.next)
+      
+        saveStreams();
+        generateSelect();
+        
       }
     }
   });
