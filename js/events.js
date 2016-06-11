@@ -39,9 +39,9 @@ clickAddStream = function(){
         priority: 0
       });
 
-   }
+    }
   }
-	$('#new-stream').val('');
+  $('#new-stream').val('');
   saveStreams();
   generateSelect();
 }
@@ -82,17 +82,17 @@ changeQuality = function(){
   Options.quality = $('#quality-select option:selected').attr('setting');
   Cookie.set('quality', $('#quality-select option:selected').attr('setting'));
   setQualities(Options.quality)
- }
+}
 
- clickClearStreams = function(){
+clickClearStreams = function(){
   if(confirm("Are you sure you want to clear all the streams?")){
-     Options.streamsList = [];
-      saveStreams()
-      generateSelect();
-  }
+   Options.streamsList = [];
+   saveStreams()
+   generateSelect();
  }
+}
 
- changeRandomMode = function(){
+changeRandomMode = function(){
   if($('#random-mode').is(':checked')){
     Options.randomMode = 1;
     Cookie.set('random', 1)
@@ -101,19 +101,19 @@ changeQuality = function(){
     Options.randomMode = 0;
     Cookie.set('random', 0)
   }
- }
+}
 
 changeChat = function(){
-   if($('#chat-toggle').is(':checked')){
-    Options.showChat = 1;
-    Cookie.set('chat', 1)
-    editChat(Options.players[0].getChannel())
-  }
-  else{
-    Options.showChat = 0;
-    Cookie.set('chat', 0)
-    editChat(null);
-  }
+ if($('#chat-toggle').is(':checked')){
+  Options.showChat = 1;
+  Cookie.set('chat', 1)
+  editChat(Options.players[0].getChannel())
+}
+else{
+  Options.showChat = 0;
+  Cookie.set('chat', 0)
+  editChat(null);
+}
 }
 
 changeNumStreams = function(){
@@ -141,15 +141,19 @@ changePriority = function(){
 }
 
 loadStreamPriority = function(){
-    let value = $('#edit-stream-select').find(':selected').text();
-    let index = indexOfStream(value);
-    let priority = Options.streamsList[index].priority;
-    if(priority === 1){
-      $('#priority-select').prop('checked', true)
-    }
-    else{
-      $('#priority-select').prop('checked', false)
-    }
+  let value = $('#edit-stream-select').find(':selected').text();
+  let index = indexOfStream(value);
+  let priority = Options.streamsList[index].priority;
+  if(priority === 1){
+    $('#priority-select').prop('checked', true)
+  }
+  else{
+    $('#priority-select').prop('checked', false)
+  }
+}
 
-
+showMoreInstructions = function(){
+  console.log("Of Course you are.")
+  $('#more-instructions').toggleClass('hidden', false)
+  $('#show-more-button').toggleClass('hidden', true)
 }

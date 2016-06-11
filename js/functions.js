@@ -1,6 +1,6 @@
 /**********************\
   Basic Functionality
-  \**********************/
+\**********************/
 
   refreshStreams = function(titles, method){
     let results = []
@@ -63,23 +63,20 @@
       else
         p=0;
       if(lists[0] || lists[1]){
-      let rIndex = Math.floor(Math.random()*lists[p].length);
-      results.push(lists[p][rIndex].name);
-      lists[p].splice(rIndex,1)
+        let rIndex = Math.floor(Math.random()*lists[p].length);
+        results.push(lists[p][rIndex].name);
+        lists[p].splice(rIndex,1)
       }
       else{ //if we run out, reuse the current results
-      let rIndex = Math.floor(Math.random()*results.length);
-      results.push(results[rIndex]);
+        let rIndex = Math.floor(Math.random()*results.length);
+        results.push(results[rIndex]);
       }
-  }
-  return results
-};
+    }
+    return results
+  };
 
-makeUrl = function(title){
-  return "http://player.twitch.tv/?channel=" + title;
-};
-
-fillStreamWindows = function(featuredStreams){
+  fillStreamWindows = function(featuredStreams){
+    window.location = '#'+ featuredStreams.join()
     for(i=0; i<featuredStreams.length;i++){
       if(Options.players[i]){
         Options.players[i].setChannel(featuredStreams[i])
@@ -103,20 +100,86 @@ fillStreamWindows = function(featuredStreams){
       }
       
     }
-  
+    
 
-  if(Options.showChat){
-    editChat(featuredStreams[0])
+    if(Options.showChat){
+      editChat(featuredStreams[0])
+    }
+  }
+
+/**************************\
+  Additional Functionality
+\**************************/
+
+importFollows = function(url){
+  $.ajax({
+    type: "GET",
+    url: url,
+    async: true,
+    success : function(r) {
+      if(r.follows.length>0){
+        for(i=0;i<r.follows.length;i++){
+          if(Options.streamsList.indexOf(r.follows[i].channel.display_name) === -1)
+            Options.streamsList.push({
+              name: r.follows[i].channel.display_name,
+              priority: 0
+            })
+        }
+        if(r._links.next)
+          importFollows(r._links.next)
+        
+        saveStreams();
+        generateSelect();
+        
+      }
+    }
+  });
+}
+
+startupFill = function(n, list){
+  $('.stream-div').empty();
+  Options.justStarted = false;
+  let numberStreams = n;
+  if(n===1){
+    $('#1-streams').toggleClass('hidden', false)
+    $('#4-streams').toggleClass('hidden', true)
+    Options.currentNumberStreams = 1;
+
+  }
+  else{
+    $('#1-streams').toggleClass('hidden', true)
+    $('#4-streams').toggleClass('hidden', false)
+    Options.currentNumberStreams = 4;
+
+    numberStreams = 4;
+  }
+  for(i=0; i<n;i++){
+    var options = {
+      height:'100%',
+      width:'100%',
+      volume: 0,
+      quality:Options.quality,
+      channel: list[i]    
+    };
+    var player = new Twitch.Player("stream" + numberStreams + i, options);
+    if(Options.sound0&&i===0){
+      player.setVolume(1);
+    }
+    Options.players[i]= player;
   }
 }
+
+setPriority = function(name, value){
+  Options.streamsList[indexOfStream(name)].priority = value
+}
+
 /*****************\
   General Helpers
-  \*****************/
+\*****************/
 
-  capitalizeFirst = function(s){
+capitalizeFirst = function(s){
     return s.charAt(0).toUpperCase() + s.slice(1)
-}//function for quality select
-
+}
 generateSelect = function(){
   let streams = Options.streamsList;
   let select = document.getElementById('edit-stream-select');
@@ -135,31 +198,6 @@ generateSelect = function(){
   }
   $('#quality-select option[selected]').text("Select Stream Quality: " + capitalizeFirst(Options.quality))
   $('select').material_select();
-}
-
-importFollows = function(url){
-  $.ajax({
-    type: "GET",
-    url: url,
-    async: true,
-    success : function(r) {
-      if(r.follows.length>0){
-        for(i=0;i<r.follows.length;i++){
-          if(Options.streamsList.indexOf(r.follows[i].channel.display_name) === -1)
-            Options.streamsList.push({
-              name: r.follows[i].channel.display_name,
-              priority: 0
-            })
-        }
-        if(r._links.next)
-          importFollows(r._links.next)
-      
-        saveStreams();
-        generateSelect();
-        
-      }
-    }
-  });
 }
 
 editChat = function(channel){
@@ -193,42 +231,10 @@ destroyPlayers = function(){
   for(i=0;i<Options.players.length;i++){
     if(Options.players[i])
       Options.players[i].destroy(); 
-      Options.players[i] = null
+    Options.players[i] = null
   }
 }
 
-startupFill = function(n, list){
-  $('.stream-div').empty();
-  Options.justStarted = false;
-  let numberStreams = n;
-  if(n===1){
-    $('#1-streams').toggleClass('hidden', false)
-    $('#4-streams').toggleClass('hidden', true)
-        Options.currentNumberStreams = 1;
-
-  }
-  else{
-    $('#1-streams').toggleClass('hidden', true)
-    $('#4-streams').toggleClass('hidden', false)
-    Options.currentNumberStreams = 4;
-
-    numberStreams = 4;
-  }
-  for(i=0; i<n;i++){
-    var options = {
-      height:'100%',
-      width:'100%',
-      volume: 0,
-      quality:Options.quality,
-      channel: list[i]    
-    };
-    var player = new Twitch.Player("stream" + numberStreams + i, options);
-    if(Options.sound0&&i===0){
-      player.setVolume(1);
-    }
-    Options.players[i]= player;
-  }
-}
 
 indexOfStream = function(name){
   let index = -1
@@ -241,9 +247,7 @@ indexOfStream = function(name){
   return index;
 }
 
-setPriority = function(name, value){
-  Options.streamsList[indexOfStream(name)].priority = value
-}
+
 
 splitByPriority = function(list){
   let p0 = [];
@@ -261,20 +265,20 @@ saveStreams = function(){
   let strArray = [];
   for(i=0;i<Options.streamsList.length;i++){
     let str = Options.streamsList[i].priority +
-              Options.streamsList[i].name;
+    Options.streamsList[i].name;
     strArray.push(str)
   }
   Cookie.set('streams', strArray)
 }
 
 loadStreams = function(){
-    let strArray = Cookie.get('streams').split(',');
-    for(i=0;i<strArray.length;i++){
-      Options.streamsList.push({
-        name: strArray[i].slice(1),
-        priority:parseInt(strArray[i].slice(0,1))
-      })
-    }
+  let strArray = Cookie.get('streams').split(',');
+  for(i=0;i<strArray.length;i++){
+    Options.streamsList.push({
+      name: strArray[i].slice(1),
+      priority:parseInt(strArray[i].slice(0,1))
+    })
+  }
 }
 
 setQualities = function(level){

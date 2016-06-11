@@ -57,34 +57,3 @@ $(document).ready(function(){
 
     generateSelect();
  });
-
-TestStreams = [
-    {
-    name: "",
-    priority : 0
-    },
-    {
-    name: "",
-    priority : 0
-    },
-    {
-    name: "",
-    priority : 0
-    },
-    {
-    name: "",
-    priority : 0
-    },
-    {
-    name: "",
-    priority : 0
-    },
-    {
-    name: "",
-    priority : 0
-    },
-    {
-    name: "",
-    priority : 0
-    },
-]

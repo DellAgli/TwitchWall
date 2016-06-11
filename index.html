@@ -4,15 +4,23 @@
 
   <meta charset="UTF-8">
 
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css" />
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <script src= "http://player.twitch.tv/js/embed/v1.js"></script>
+  <script src="js/cookie.js"></script>
+  <script src="js/startup.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/events.js"></script>
+  
 </head>
 
 <body>
 
-<div class="row main" id="1-streams">
+  <div class="row main" id="1-streams">
     <div class="streams col s12" id="streams-div">
       <div class="row single-row">
         <div class="col s12 col-div">
@@ -27,60 +35,60 @@
 
     <div class="chat col s3 hidden" id="chat-div">
       <iframe id="chat-frame"
-      frameborder="0" 
-      scrolling="no" 
-      id="chat_embed" 
-      src="" 
-      height="100%" 
+      frameborder="0"
+      scrolling="no"
+      id="chat_embed"
+      src=""
+      height="100%"
       width="100%">
     </iframe>
   </div>
 </div>
 
 <div class="row main hidden" id="4-streams">
-    <div class="streams col s12" id="streams-div">
-      <div class="row upper-row">
+  <div class="streams col s12" id="streams-div">
+    <div class="row upper-row">
 
-        <div class="col s6 col-div">
-          <div class="stream-div" id="stream40">
+      <div class="col s6 col-div">
+        <div class="stream-div" id="stream40">
 
-          </div>
         </div>
-
-        <div class="col s6 col-div">
-          <div class="stream-div" id="stream41">
-
-          </div>
-        </div>
-
       </div>
-      <div class="row lower-row">
 
-        <div class="col s6 col-div">
-          <div class="stream-div" id="stream42">
+      <div class="col s6 col-div">
+        <div class="stream-div" id="stream41">
 
-          </div>
         </div>
-
-        <div class="col s6 col-div">
-          <div class="stream-div" id="stream43">
-
-          </div>
-        </div>
-
       </div>
+
     </div>
+    <div class="row lower-row">
 
-    <div class="chat col s3 hidden" id="chat-div">
-      <iframe id="chat-frame"
-      frameborder="0" 
-      scrolling="no" 
-      id="chat_embed" 
-      src="" 
-      height="100%" 
-      width="100%">
-    </iframe>
+      <div class="col s6 col-div">
+        <div class="stream-div" id="stream42">
+
+        </div>
+      </div>
+
+      <div class="col s6 col-div">
+        <div class="stream-div" id="stream43">
+
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <div class="chat col s3 hidden" id="chat-div">
+    <iframe id="chat-frame"
+    frameborder="0"
+    scrolling="no"
+    id="chat_embed"
+    src=""
+    height="100%"
+    width="100%">
+  </iframe>
+</div>
 </div>
 
 <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
@@ -160,7 +168,7 @@
           <input type="checkbox" class="filled-in checkbox-twitch-purple" id="number-streams" onchange="changeNumStreams()" />
           <label class="setup-label" for="number-streams">Only Display One Stream</label>
 
-          </div>
+        </div>
 
       </div>
 
@@ -176,16 +184,45 @@
     <div class="modal-content">
       <h4>What is Twitch Wall?</h4>
       <p>
-        Twitch Wall is a platform for automatic curation of Twitch.tv streams.
-        Simply tell us which streamers you are interested in watching and we will automatically fill the page with a wall of content.
+        Twitch Wall helps you simplify the way you watch one or more Twitch.tv streams. Sit back and relax while we serve up live-stream content for you.
+        Just tell Twitch Wall what streamers you enjoy and the web-page will automatically serve you up to four of your favorite streams.
 
       </p>
       <hr>
       <h4>How Do I Use This Beautiful Contraption?</h4>
       <p>
-        Hover over the Twitch logo in the bottom right-hand corner and click the gear to configure the site.
-        Once you've let us know which streams you are interested in, click the twitch logo to reload the page begin watching.
+        First, add some streams. Then click the Twitch Button. Congratulations, you did it. Treat yourself to some popcorn and enjoy some live streamed gaming content.
       </p>
+      <a class="waves-effect waves-light btn-large twitch-purple" onclick="showMoreInstructions()" id="show-more-button">I'm still confused.</a>
+      <div class="hidden" id="more-instructions">
+        <ol>
+          <li>Hover over the Twitch Button and click the gear.</li>
+          <li>Add streams
+            <ul>
+              <li>Either type out an individual channel and click add.</li>
+              <li>Or type ‘import:{Your Twitch Username}’ to add all the channels you follow.</li>
+            </ul>
+          </li>
+          <li><em>Optional:</em> Change a channel’s priority
+            <ul>
+              <li>Choose a stream from the “Edit a Stream” dropdown menu.</li>
+              <li>Check or uncheck the high priority button.</li>
+            </ul>
+          </li>
+          <li>Change other settings:
+            <ul>
+              <li>Sound</li>
+              <li>Number of streams</li>
+              <li>Chat</li>
+              <li>Stream Quality</li>
+              <li>Auto Refresh</li>
+              <li>Random Mode</li>
+            </ul>
+          </li>
+          <li>Exit the setup screen and click the Twitch Button</li>
+          <li>Sit back and enjoy.</li>
+        </ol>
+      </div>
       <hr>
       <h4>Who Is the Beautiful Creature Who Created This Miracle of a Website?</h4>
       <div class="row about-row">
@@ -214,14 +251,6 @@
       <a class="modal-action modal-close waves-effect waves-green btn-flat ">Got It!</a>
     </div>
 
-
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src= "http://player.twitch.tv/js/embed/v1.js"></script>
-    <script src="js/cookie.js"></script>
-    <script src="js/startup.js"></script>
-    <script src="js/functions.js"></script>
-    <script src="js/events.js"></script>
 
   </body>
   <html>
