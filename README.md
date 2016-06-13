@@ -1,4 +1,4 @@
-# [Twitch Wall: Hosted Here!](https://twitchwall.dellag.li)
+# [Twitch Wall: Hosted Here!](http://twitchwall.dellag.li)
 
 ### What is Twitch Wall?
 Twitch Wall helps you simplify the way you watch one or more Twitch.tv streams. Sit back and relax while we serve up live-stream content for you.
