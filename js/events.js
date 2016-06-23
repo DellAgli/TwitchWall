@@ -157,3 +157,4 @@ showMoreInstructions = function(){
   $('#more-instructions').toggleClass('hidden', false)
   $('#show-more-button').toggleClass('hidden', true)
 }
+
