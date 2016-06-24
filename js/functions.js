@@ -150,32 +150,19 @@
     Options.justStarted = false;
     let numberStreams = n;
     if(n===1){
-      $('#1-streams').toggleClass('hidden', false)
-      $('#4-streams').toggleClass('hidden', true)
+      $('#single').toggleClass('hidden', false)
+      $('#multiple').toggleClass('hidden', true)
       Options.currentNumberStreams = 1;
 
     }
     else{
-      $('#1-streams').toggleClass('hidden', true)
-      $('#4-streams').toggleClass('hidden', false)
+    $('#single').toggleClass('hidden', true)
+    $('#multiple').toggleClass('hidden', false)
       Options.currentNumberStreams = 4;
 
       numberStreams = 4;
     }
-    for(i=0; i<n;i++){
-      var options = {
-        height:'100%',
-        width:'100%',
-        volume: 0,
-        quality:Options.quality,
-        channel: list[i]    
-      };
-      var player = new Twitch.Player("stream" + numberStreams + i, options);
-      if(Options.sound0&&i===0){
-        player.setVolume(1);
-      }
-      Options.players[i]= player;
-    }
+    fillStreamWindows(list)
   }
 
   setPriority = function(name, value){
@@ -213,19 +200,20 @@
     if(channel){
       $('#chat-frame').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
       $('#chat-div').toggleClass('hidden', false);
-      $('#streams-div').toggleClass('s9', true);
-      $('#streams-div').toggleClass('s12',false);
-      $('.fixed-action-btn').css('bottom', '0px')
-      $('.fixed-action-btn').css('top', '20px')
+      $('#single').toggleClass('s9', true);
+      $('#single').toggleClass('s12',false);
+      $('#multiple').toggleClass('s9', true);
+      $('#multiple').toggleClass('s12',false);
+      $('.fixed-action-btn').css('right', '30%');
 
     }
     else{
       $('#chat-div').toggleClass('hidden', true);
-      $('#streams-div').toggleClass('s9', false);
-      $('#streams-div').toggleClass('s12',true );
-      $('.fixed-action-btn').css('top', '0px')
-      $('.fixed-action-btn').css('bottom', '45px')
-
+      $('#single').toggleClass('s9', false);
+      $('#single').toggleClass('s12',true);
+      $('#multiple').toggleClass('s9', false);
+      $('#multiple').toggleClass('s12',true);
+      $('.fixed-action-btn').css('right', '24px')
     }
   }
 

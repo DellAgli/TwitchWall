@@ -5,13 +5,13 @@ clickRefresh = function(){
   }
   let oldNumberStreams = Options.currentNumberStreams; 
   if(Options.numberStreams === 1){
-    $('#1-streams').toggleClass('hidden', false)
-    $('#4-streams').toggleClass('hidden', true)
+    $('#single').toggleClass('hidden', false)
+    $('#multiple').toggleClass('hidden', true)
     Options.currentNumberStreams = 1;
   }
   else{
-    $('#1-streams').toggleClass('hidden', true)
-    $('#4-streams').toggleClass('hidden', false)
+    $('#single').toggleClass('hidden', true)
+    $('#multiple').toggleClass('hidden', false)
     Options.currentNumberStreams = 4;
   }
 
@@ -104,16 +104,17 @@ changeRandomMode = function(){
 }
 
 changeChat = function(){
- if($('#chat-toggle').is(':checked')){
-  Options.showChat = 1;
-  Cookie.set('chat', 1)
-  editChat(Options.players[0].getChannel())
-}
-else{
-  Options.showChat = 0;
-  Cookie.set('chat', 0)
-  editChat(null);
-}
+  if($('#chat-toggle').is(':checked')){
+    Options.showChat = 1;
+    Cookie.set('chat', 1)
+    if(Options.players[0].getChannel())
+      editChat(Options.players[0].getChannel())
+  }
+  else{
+    Options.showChat = 0;
+    Cookie.set('chat', 0)
+    editChat(null);
+  }
 }
 
 changeNumStreams = function(){
