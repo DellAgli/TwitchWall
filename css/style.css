@@ -22,6 +22,8 @@ body{
 
 .main{
   margin: 0 !important;
+  height: 100%;
+  width:100%;
 }
 
 .single-row{
@@ -54,7 +56,7 @@ body{
   padding: 0 0 0 0 !important;
 }
 
-.stream-div h1, .stream-div p{
+.welcome-div h1, .welcome-div p{
   color: #FFF;
   text-indent: 5%
 }
@@ -107,6 +109,16 @@ body{
 
 .btn-large{
   margin-bottom: 4px;
+}
+
+.centered-img{
+  display: block;
+  margin: 0 auto;
+  border: 5px solid #ffffff
+}
+
+.layout-active{
+  border: 5px solid #322053
 }
 
 

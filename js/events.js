@@ -159,3 +159,14 @@ showMoreInstructions = function(){
   $('#show-more-button').toggleClass('hidden', true)
 }
 
+clickLayout= function(n){
+  for(i=0;i<LAYOUTS.length;i++){
+    if(i==n){
+      $('#layout'+i).toggleClass('layout-active', true);
+      Options.layout = LAYOUTS[i];
+    }
+    else
+      $('#layout'+i).toggleClass('layout-active', false);
+  }
+}
+

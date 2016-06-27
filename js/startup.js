@@ -50,10 +50,31 @@ $(document).ready(function(){
      $('.tooltipped').tooltip({delay: 50});
     
 
-    if(document.location.hash){
-        let list = document.location.hash.slice(1).split(',');
-        startupFill(list.length, list);
-    }
+    //if(document.location.hash){
+     //   let list = document.location.hash.slice(1).split(',');
+      //  startupFill(list.length, list);
+    //}
 
     generateSelect();
+
+    //for(i=0;i<LAYOUTS.length;i++){
+    for(i=0;i<4;i++){
+        let div = document.createElement('div');
+        let a = document.createElement('a');
+        let img = document.createElement('img');
+        img.setAttribute('src', LAYOUTS[i].img)
+        img.setAttribute('id', 'layout'+i);
+        img.setAttribute('class', 'centered-img');
+        a.appendChild(img);
+        a.setAttribute('onClick','clickLayout('+i+')');
+        div.appendChild(a);
+        document.getElementById('layout-selection').appendChild(div)
+    }
+
+    $("#layout-selection").owlCarousel({
+        items:4,
+        responsiveBaseWidth: $('#setup-modal')
+
+    });
+
  });
