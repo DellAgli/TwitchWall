@@ -1,99 +1,83 @@
 LAYOUTS = [
-	{
-		id:'a',
-		img:'media/layouts/0.png',
-		numStreams: 1,
-		chat: false,
-	},
-		{
-		id:'a',
-		img:'media/layouts/1.png',
-		numStreams: 1,
-		chat: true,
-	},
-		{
-		id:'a',
-		img:'media/layouts/2.png',
-		numStreams: 2,
-		chat: false,
-	},
-		{
-		id:'a',
-		img:'media/layouts/3.png',
-		numStreams: 2,
-		chat: true,
-	},
-		{
-		id:'a',
-		img:'media/layouts/4.png',
-		numStreams: 2,
-		chat: true,
-	},
-		{
-		id:'a',
-		img:'media/layouts/5.png',
-		numStreams: 3,
-		chat: false,
-	},
-		{
-		id:'a',
-		img:'media/layouts/6.png',
-		numStreams: 3,
-		chat: true,
-	},
-		{
-		id:'a',
-		img:'media/layouts/7.png',
-		numStreams: 3,
-		chat: true,
-	},
-		{
-		id:'a',
-		img:'media/layouts/1.png',
-		numStreams: 4,
-		chat: false,
-	},
-		{
-		id:'a',
-		img:'media/layouts/8.png',
-		numStreams: 4,
-		chat: true,
-	},
-		{
-		id:'a',
-		img:'media/layouts/9.png',
-		numStreams: 4,
-		chat: true,
-	},
-	{
-		id:'a',
-		img:'media/layouts/10.png',
-		numStreams: 5,
-		chat: false,
-	},
-	{
-		id:'a',
-		img:'media/layouts/11.png',
-		numStreams: 5,
-		chat: true,
-	},
-	{
-		id:'a',
-		img:'media/layouts/12.png',
-		numStreams: 6,
-		chat: false,
-	},
-	{
-		id:'a',
-		img:'media/layouts/13.png',
-		numStreams: 6,
-		chat: false,
-	},
-	{
-		id:'a',
-		img:'media/layouts/14.png',
-		numStreams: 6,
-		chat: true,
-	},
+{
+	index:0,
+	numStreams: 1,
+	chat: false,
+},
+{
+	index:1,
+	numStreams: 1,
+	chat: true,
+},
+{
+	index:2,
+	numStreams: 2,
+	chat: false,
+},
+{
+	index:3,
+	numStreams: 2,
+	chat: true,
+},
+{
+	index:4,
+	numStreams: 2,
+	chat: true,
+},
+{
+	index:5,
+	numStreams: 3,
+	chat: false,
+},
+{
+	index:6,
+	numStreams: 3,
+	chat: true,
+},
+{
+	index:7,
+	numStreams: 3,
+	chat: true,
+},
+{
+	index:8,
+	numStreams: 4,
+	chat: false,
+},
+{
+	index:9,
+	numStreams: 4,
+	chat: true,
+},
+{
+	index:10,
+	numStreams: 4,
+	chat: true,
+},
+{
+	index:11,
+	numStreams: 5,
+	chat: false,
+},
+{
+	index:12,
+	numStreams: 5,
+	chat: true,
+},
+{
+	index:13,
+	numStreams: 6,
+	chat: false,
+},
+{
+	index:14,
+	numStreams: 6,
+	chat: true,
+},
+{
+	index:15,
+	numStreams: 6,
+	chat: false,
+},
 
 ]

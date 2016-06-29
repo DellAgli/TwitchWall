@@ -160,13 +160,14 @@ showMoreInstructions = function(){
 }
 
 clickLayout= function(n){
+  console.log(n)
   for(i=0;i<LAYOUTS.length;i++){
     if(i==n){
-      $('#layout'+i).toggleClass('layout-active', true);
+      $('#layout-preview-'+i).toggleClass('active-preview', true);
       Options.layout = LAYOUTS[i];
     }
     else
-      $('#layout'+i).toggleClass('layout-active', false);
+      $('#layout-preview-'+i).toggleClass('active-preview', false);
   }
 }
 

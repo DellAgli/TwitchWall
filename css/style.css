@@ -36,292 +36,371 @@ body{
   width: 100%;
   height: 100%;
   margin:0 0 0 0;
-  background-color: RED; /**TEMP**/
+}
+
+.stream-player, .chat-box{
+  margin: 0 0 0 0;
 }
 
 /**LAYOUT0**/
-.layout .layout-0.stream-player{
+.layout-0 .stream-player{
   width: 100%;
   height: 100%;
   margin: 0 0 0 0;
-  background-color: PURPLE; /**TEMP**/
+
 }
 
-.layout .layout-0.chat-box{
+.layout-0 .chat-box{
   display:none;
 }
 
+.layout-0 .stream-player:nth-of-type(2){
+  display: none;
+}
+
+.layout-0 .stream-player:nth-of-type(3){
+  display: none;
+}
+.layout-0 .stream-player:nth-of-type(4){
+  display: none;
+}
+.layout-0 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-0 .stream-player:nth-of-type(6){
+  display: none;
+}
 
 /**LAYOUT1**/
-.layout .layout-1.stream-player{
+.layout-1 .stream-player{
   width: 75%;
   height: 100%;
-  margin: 0 0 0 0;
-  background-color: PURPLE; /**TEMP**/
   float:left;
 }
-.layout .layout-1.chat-box{
+.layout-1 .chat-box{
   width: 25%;
   height: 100%;
-  margin: 0 0 0 0;
-  background-color: Blue; /**TEMP**/
   float:right;
+}
+
+.layout-1 .stream-player:nth-of-type(2){
+  display: none;
+}
+
+.layout-1 .stream-player:nth-of-type(3){
+  display: none;
+}
+.layout-1 .stream-player:nth-of-type(4){
+  display: none;
+}
+.layout-1 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-1 .stream-player:nth-of-type(6){
+  display: none;
 }
 
 /**LAYOUT2**/
-.layout .layout-2.stream-player{
-  width: 75%;
+.layout-2 .stream-player{
+  width: 100%;
   height: 50%;
-  margin: 0 0 0 0;
-  background-color: PURPLE; /**TEMP**/
   float:left;
 }
 
-.layout .layout-2.chat-box{
+.layout-2 .chat-box{
   display:none;
 }
 
+.layout-2 .stream-player:nth-of-type(3){
+  display: none;
+}
+.layout-2 .stream-player:nth-of-type(4){
+  display: none;
+}
+.layout-2 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-2 .stream-player:nth-of-type(6){
+  display: none;
+}
+
 /**LAYOUT3**/
-.layout .layout-3.stream-player{
+.layout-3 .stream-player{
   width: 75%;
   height: 50%;
-  margin: 0 0 0 0;
-  background-color: PURPLE; /**TEMP**/
   float:left;
 }
-.layout .layout-3.chat-box{
+.layout-3 .chat-box{
   width: 25%;
   height: 100%;
-  margin: 0 0 0 0;
-  background-color: Blue; /**TEMP**/
-  float:right;
+  margin-left: 75%;
+  position: absolute;
+}
+
+.layout-3 .stream-player:nth-of-type(3){
+  display: none;
+}
+.layout-3 .stream-player:nth-of-type(4){
+  display: none;
+}
+.layout-3 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-3 .stream-player:nth-of-type(6){
+  display: none;
 }
 
 
 /**LAYOUT4**/
-.layout .layout-4.stream-player{
-  margin: 0 0 0 0;
+.layout-4 .stream-player{
   float:left;
 }
 
-.layout .layout-4.stream-player.major{
+.layout-4 .stream-player.major{
   width: 70%;
   height: 100%;
-  margin: 0 0 0 0;
-  background-color: PURPLE; /**TEMP**/
   float:left;
 }
 
-.layout .layout-4.stream-player.minor{
+.layout-4 .stream-player.minor{
   width: 30%;
   height: 40%;
-  margin: 0 0 0 0;
-  background-color: GREEN; /**TEMP**/
   float:right;
+}
+
+.layout-4 .chat-box{
+  width: 30%;
+  height: 60%;
+  float:right;
+}
+
+.layout-4 .stream-player:nth-of-type(3){
+  display: none;
+}
+.layout-4 .stream-player:nth-of-type(4){
+  display: none;
+}
+.layout-4 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-4 .stream-player:nth-of-type(6){
+  display: none;
 }
 
 
 /**LAYOUT5**/
-.layout .layout-5.stream-player{
-  margin: 0 0 0 0;
+.layout-5 .stream-player{
   float:left;
   height: 50%;
   width: 50%;
-  background-color: PURPLE; /**TEMP**/
-
 }
 
-.layout .layout-5.chat-box{
+.layout-5 .chat-box{
+  display: none;
+}
+
+.layout-5 .stream-player:nth-of-type(4){
+  display: none;
+}
+.layout-5 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-5 .stream-player:nth-of-type(6){
   display: none;
 }
 
 /**LAYOUT6**/
-.layout .layout-6.stream-player{
-  margin: 0 0 0 0;
+.layout-6 .stream-player{
   float:left;
   height: 50%;
   width: 50%;
-  background-color: PURPLE; /**TEMP**/
-
 }
 
-.layout .layout-6.chat-box{
-  margin: 0 0 0 0;
+.layout-6 .chat-box{
   float:left;
   height: 50%;
   width: 50%;
-  background-color: GREEN;
 }
 
-/**LAYOUT7**/
-.layout .layout-7.stream-player.major{
-  margin: 0 0 0 0;
-  float:left;
-  height: 65%;
-  width: 75%;
-  background-color: PURPLE; /**TEMP**/
-
+.layout-6 .stream-player:nth-of-type(4){
+  display: none;
 }
-
-.layout .layout-7.stream-player.minor{
-  margin: 0 0 0 0;
-  float:left;
-  height: 35%;
-  width: 37.5%;
-  background-color: Blue; /**TEMP**/
-
+.layout-6 .stream-player:nth-of-type(5){
+  display: none;
 }
-
-.layout .layout-7.chat-box{
-  margin: 0 0 0 0;
-  float:right;
-  height: 100%;
-  width: 25%;
-  background-color: GREEN;
-}
-
-/**LAYOUT8**/
-.layout .layout-8.stream-player{
-  margin: 0 0 0 0;
-  float:left;
-  height: 50%;
-  width: 50%;
-  background-color: PURPLE; /**TEMP**/
-
-}
-
-.layout .layout-8.chat-box{
+.layout-6 .stream-player:nth-of-type(6){
   display: none;
 }
 
-/**LAYOUT9**/
-.layout .layout-9.stream-player{
-  margin: 0 0 0 0;
-  float:left;
-  height: 50%;
-  width: 37.5%;
-  background-color: PURPLE; /**TEMP**/
-
-}
-
-.layout .layout-9.chat-box{
-  margin: 0 0 0 0;
-  float:right;
-  height: 100%;
-  width: 25%;
-  background-color: GREEN;
-}
-
-/**LAYOUT10**/
-.layout .layout-10.stream-player.major{
-  margin: 0 0 0 0;
+/**LAYOUT7**/
+.layout-7 .stream-player.major{
   float:left;
   height: 65%;
   width: 75%;
-  background-color: PURPLE; /**TEMP**/
-
 }
 
-.layout .layout-10.stream-player.minor{
-  margin: 0 0 0 0;
+.layout-7 .stream-player.minor{
+  float:left;
+  height: 35%;
+  width: 37.5%;
+}
+
+.layout-7 .chat-box{
+  width: 25%;
+  height: 100%;
+  margin-left: 75%;
+  position: fixed;
+}
+
+.layout-7 .stream-player:nth-of-type(4){
+  display: none;
+}
+.layout-7 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-7 .stream-player:nth-of-type(6){
+  display: none;
+}
+
+/**LAYOUT8**/
+.layout-8 .stream-player{
+  float:left;
+  height: 50%;
+  width: 50%;
+}
+
+.layout-8 .chat-box{
+  display: none;
+}
+
+.layout-8 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-8 .stream-player:nth-of-type(6){
+  display: none;
+}
+
+
+/**LAYOUT9**/
+.layout-9 .stream-player{
+  float:left;
+  height: 50%;
+  width: 37.5%;
+}
+
+.layout-9 .chat-box{
+  position: absolute;
+  margin-left: 75%;
+  height: 100%;
+  width: 25%;
+}
+
+.layout-9 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-9 .stream-player:nth-of-type(6){
+  display: none;
+}
+
+/**LAYOUT10**/
+.layout-10 .stream-player.major{
+  float:left;
+  height: 65%;
+  width: 75%;
+}
+
+.layout-10 .stream-player.minor{
   float:left;
   height: 35%;
   width: calc(100% / 3);
-  background-color: Blue; /**TEMP**/
-
 }
 
-.layout .layout-10.chat-box{
-  margin: 0 0 0 0;
-  float:right;
+.layout-10 .chat-box{
+  position: absolute;
+  margin-left: 75%;
   height: 65%;
   width: 25%;
-  background-color: GREEN;
+}
+
+.layout-10 .stream-player:nth-of-type(5){
+  display: none;
+}
+.layout-10 .stream-player:nth-of-type(6){
+  display: none;
 }
 
 /**LAYOUT11**/
-.layout .layout-11.stream-player{
-  margin: 0 0 0 0;
+.layout-11 .stream-player{
   float:left;
   height: 50%;
   width: calc(100% / 3);
-  background-color: PURPLE; /**TEMP**/
-
 }
 
-.layout .layout-11.chat-box{
+.layout-11 .chat-box{
+  display: none;
+}
+
+.layout-11 .stream-player:nth-of-type(6){
   display: none;
 }
 
 /**LAYOUT12**/
-.layout .layout-12.stream-player{
-  margin: 0 0 0 0;
+.layout-12 .stream-player{
   float:left;
   height: 50%;
   width: calc(100% / 3);
-  background-color: PURPLE; /**TEMP**/
-
 }
 
-.layout .layout-12.chat-box{
-  margin: 0 0 0 0;
+.layout-12 .chat-box{
   float:left;
   height: 50%;
   width: calc(100% / 3);
-  background-color: GREEn;
+}
+
+.layout-12 .stream-player:nth-of-type(6){
+  display: none;
 }
 
 /**LAYOUT13**/
-.layout .layout-13.stream-player{
-  margin: 0 0 0 0;
+.layout-13 .stream-player{
   float:left;
   height: 50%;
   width: calc(100% / 3);
-  background-color: PURPLE; /**TEMP**/
 }
 
-.layout .layout-13.chat-box{
+.layout-13 .chat-box{
   display:none;
 }
 
 /**LAYOUT14**/
-.layout .layout-14.stream-player{
-  margin: 0 0 0 0;
+.layout-14 .stream-player{
   float:left;
   height: calc(100% / 3);
   width:37.5%;
-  background-color: PURPLE; /**TEMP**/
-
 }
 
-.layout .layout-14.chat-box{
-  margin: 0 0 0 0;
-  float:right;
+.layout-14 .chat-box{
+  position: absolute;
+  margin-left: 75%;
   height: 100%;
   width: 25%;
-  background-color: GREEn;
 }
 
 /**LAYOUT15**/
-.layout .layout-15.stream-player.major{
-  margin: 0 0 0 0;
+.layout-15 .stream-player.major{
   float:left;
   height: calc(200% / 3);
   width: calc(200% / 3);
-  background-color: PURPLE; /**TEMP**/
-
 }
 
-.layout .layout-15.stream-player.minor{
-  margin: 0 0 0 0;
+.layout-15 .stream-player.minor{
   float:right;
   height: calc(100% / 3);
   width:calc(100% / 3);
-  background-color: Blue; /**TEMP**/
 }
 
 
-.layout .layout-15.chat-box{
+.layout-15 .chat-box{
   display: none
 }
 
@@ -379,14 +458,66 @@ body{
   margin-bottom: 4px;
 }
 
-.centered-img{
-  display: block;
-  margin: 0 auto;
-  border: 5px solid #ffffff
+.layout-preview{
+  height: 95px;
+  border-style: solid;
+  border-color: #FFF;
+  margin:auto;
+  width: 160px;
+  font-size: 18px;
+  text-align: center;
 }
 
-.layout-active{
-  border: 5px solid #322053
+.layout-preview.active-preview{
+  border-color: #211637;
+}
+
+.layout-preview .stream-player{
+  background-color: #e2dbf0;
+  border-style: solid;
+  border-color: #9a7fcc
+}
+
+.layout-preview .chat-box{
+  background-color: #f1edf8;
+  border-style: solid;
+  border-color: #9a7fcc;
+
+}
+
+.layout-3.layout-preview .chat-box{
+  width: 38.5px;
+  height: 89px;
+  margin-left: 115.5px;
+  position: absolute;
+}
+
+.layout-7.layout-preview .chat-box{
+  width: 38.5px;
+  height: 89px;
+  margin-left: 115.5px;
+  position: absolute;
+}
+
+.layout-9.layout-preview .chat-box{
+  width: 38.5px;
+  height: 89px;
+  margin-left: 115.5px;
+  position: absolute;
+}
+
+.layout-10.layout-preview .chat-box{
+  width: 38.5px;
+  height: 57.884px;
+  margin-left: 115.5px;
+  position: absolute;
+}
+
+.layout-14.layout-preview .chat-box{
+  width: 38.5px;
+  height: 89px;
+  margin-left: 115.5px;
+  position: absolute;
 }
 
 

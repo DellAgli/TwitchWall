@@ -57,15 +57,41 @@ $(document).ready(function(){
 
     generateSelect();
 
-    //for(i=0;i<LAYOUTS.length;i++){
-    for(i=0;i<4;i++){
+    for(i=0;i<LAYOUTS.length;i++){
         let div = document.createElement('div');
         let a = document.createElement('a');
-        let img = document.createElement('img');
-        img.setAttribute('src', LAYOUTS[i].img)
-        img.setAttribute('id', 'layout'+i);
-        img.setAttribute('class', 'centered-img');
-        a.appendChild(img);
+        let div2 = document.createElement('div');
+        div2.setAttribute('class', 'layout-preview layout layout-'+i );
+        div2.setAttribute('id', "layout-preview-" + i)
+        let s1 = document.createElement('div')
+        s1.setAttribute('class', "stream-player major")
+        s1.innerHTML = '1'
+        let s2 = document.createElement('div')
+        s2.setAttribute('class', "stream-player minor")
+        s2.innerHTML = '2'
+        let s3 = document.createElement('div')
+        s3.setAttribute('class', "stream-player minor")
+        s3.innerHTML = '3'
+        let s4 = document.createElement('div')
+        s4.setAttribute('class', "stream-player minor")
+        s4.innerHTML = '4'
+        let s5 = document.createElement('div')
+        s5.setAttribute('class', "stream-player minor")
+        s5.innerHTML = '5'
+        let s6 = document.createElement('div')
+        s6.setAttribute('class', "stream-player minor")
+        s6.innerHTML = '6'
+        let c1 = document.createElement('div')
+        c1.innerHTML = 'C'
+        c1.setAttribute('class', "chat-box");
+        div2.appendChild(s1);
+        div2.appendChild(s2);
+        div2.appendChild(s3);
+        div2.appendChild(s4);
+        div2.appendChild(s5);
+        div2.appendChild(s6);
+        div2.appendChild(c1);
+        a.appendChild(div2);
         a.setAttribute('onClick','clickLayout('+i+')');
         div.appendChild(a);
         document.getElementById('layout-selection').appendChild(div)
