@@ -26,40 +26,308 @@ body{
   width:100%;
 }
 
-.single-row{
-  height: 100%
-  padding: 0;
-  margin:0 0 0 0!important;
-}
-
-.upper-row, .lower-row{
-  height: 50%;
-  padding: 0;
-  margin:0 !important;
-}
-
-.col-div{
-  padding: 0 0 0 0 !important;
-  margin: 0 0 0 0 !important;
-}
-
-.stream-div{
-  height: 100%;
-}
-
-.stream-frame{
-  width: 100%;
-  height: 100%;
-}
-
-.chat{
-  padding: 0 0 0 0 !important;
-}
 
 .welcome-div h1, .welcome-div p{
   color: #FFF;
   text-indent: 5%
 }
+
+.layout{
+  width: 100%;
+  height: 100%;
+  margin:0 0 0 0;
+  background-color: RED; /**TEMP**/
+}
+
+/**LAYOUT0**/
+.layout .layout-0.stream-player{
+  width: 100%;
+  height: 100%;
+  margin: 0 0 0 0;
+  background-color: PURPLE; /**TEMP**/
+}
+
+.layout .layout-0.chat-box{
+  display:none;
+}
+
+
+/**LAYOUT1**/
+.layout .layout-1.stream-player{
+  width: 75%;
+  height: 100%;
+  margin: 0 0 0 0;
+  background-color: PURPLE; /**TEMP**/
+  float:left;
+}
+.layout .layout-1.chat-box{
+  width: 25%;
+  height: 100%;
+  margin: 0 0 0 0;
+  background-color: Blue; /**TEMP**/
+  float:right;
+}
+
+/**LAYOUT2**/
+.layout .layout-2.stream-player{
+  width: 75%;
+  height: 50%;
+  margin: 0 0 0 0;
+  background-color: PURPLE; /**TEMP**/
+  float:left;
+}
+
+.layout .layout-2.chat-box{
+  display:none;
+}
+
+/**LAYOUT3**/
+.layout .layout-3.stream-player{
+  width: 75%;
+  height: 50%;
+  margin: 0 0 0 0;
+  background-color: PURPLE; /**TEMP**/
+  float:left;
+}
+.layout .layout-3.chat-box{
+  width: 25%;
+  height: 100%;
+  margin: 0 0 0 0;
+  background-color: Blue; /**TEMP**/
+  float:right;
+}
+
+
+/**LAYOUT4**/
+.layout .layout-4.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+}
+
+.layout .layout-4.stream-player.major{
+  width: 70%;
+  height: 100%;
+  margin: 0 0 0 0;
+  background-color: PURPLE; /**TEMP**/
+  float:left;
+}
+
+.layout .layout-4.stream-player.minor{
+  width: 30%;
+  height: 40%;
+  margin: 0 0 0 0;
+  background-color: GREEN; /**TEMP**/
+  float:right;
+}
+
+
+/**LAYOUT5**/
+.layout .layout-5.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: 50%;
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-5.chat-box{
+  display: none;
+}
+
+/**LAYOUT6**/
+.layout .layout-6.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: 50%;
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-6.chat-box{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: 50%;
+  background-color: GREEN;
+}
+
+/**LAYOUT7**/
+.layout .layout-7.stream-player.major{
+  margin: 0 0 0 0;
+  float:left;
+  height: 65%;
+  width: 75%;
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-7.stream-player.minor{
+  margin: 0 0 0 0;
+  float:left;
+  height: 35%;
+  width: 37.5%;
+  background-color: Blue; /**TEMP**/
+
+}
+
+.layout .layout-7.chat-box{
+  margin: 0 0 0 0;
+  float:right;
+  height: 100%;
+  width: 25%;
+  background-color: GREEN;
+}
+
+/**LAYOUT8**/
+.layout .layout-8.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: 50%;
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-8.chat-box{
+  display: none;
+}
+
+/**LAYOUT9**/
+.layout .layout-9.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: 37.5%;
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-9.chat-box{
+  margin: 0 0 0 0;
+  float:right;
+  height: 100%;
+  width: 25%;
+  background-color: GREEN;
+}
+
+/**LAYOUT10**/
+.layout .layout-10.stream-player.major{
+  margin: 0 0 0 0;
+  float:left;
+  height: 65%;
+  width: 75%;
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-10.stream-player.minor{
+  margin: 0 0 0 0;
+  float:left;
+  height: 35%;
+  width: calc(100% / 3);
+  background-color: Blue; /**TEMP**/
+
+}
+
+.layout .layout-10.chat-box{
+  margin: 0 0 0 0;
+  float:right;
+  height: 65%;
+  width: 25%;
+  background-color: GREEN;
+}
+
+/**LAYOUT11**/
+.layout .layout-11.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: calc(100% / 3);
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-11.chat-box{
+  display: none;
+}
+
+/**LAYOUT12**/
+.layout .layout-12.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: calc(100% / 3);
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-12.chat-box{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: calc(100% / 3);
+  background-color: GREEn;
+}
+
+/**LAYOUT13**/
+.layout .layout-13.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: 50%;
+  width: calc(100% / 3);
+  background-color: PURPLE; /**TEMP**/
+}
+
+.layout .layout-13.chat-box{
+  display:none;
+}
+
+/**LAYOUT14**/
+.layout .layout-14.stream-player{
+  margin: 0 0 0 0;
+  float:left;
+  height: calc(100% / 3);
+  width:37.5%;
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-14.chat-box{
+  margin: 0 0 0 0;
+  float:right;
+  height: 100%;
+  width: 25%;
+  background-color: GREEn;
+}
+
+/**LAYOUT15**/
+.layout .layout-15.stream-player.major{
+  margin: 0 0 0 0;
+  float:left;
+  height: calc(200% / 3);
+  width: calc(200% / 3);
+  background-color: PURPLE; /**TEMP**/
+
+}
+
+.layout .layout-15.stream-player.minor{
+  margin: 0 0 0 0;
+  float:right;
+  height: calc(100% / 3);
+  width:calc(100% / 3);
+  background-color: Blue; /**TEMP**/
+}
+
+
+.layout .layout-15.chat-box{
+  display: none
+}
+
+
+
+
 
 /***********/
 /* Buttons */
