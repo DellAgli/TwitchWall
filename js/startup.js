@@ -5,10 +5,7 @@ Options = {
 	sound0 : 1,
 	autoRefresh : null,
 	randomMode : 0,
-	numberStreams: 4,
-	showChat: 0,
     justStarted: true,
-    currentNumberStreams : 0
 }
 
 
@@ -48,12 +45,26 @@ $(document).ready(function(){
     	$('#chat-toggle').attr('checked', true);
     }
      $('.tooltipped').tooltip({delay: 50});
-    
 
-    //if(document.location.hash){
-     //   let list = document.location.hash.slice(1).split(',');
-      //  startupFill(list.length, list);
-    //}
+    let layoutIndex = Cookie.get('layout')
+     if(layoutIndex){
+        $('#main-container').toggleClass('layout-'+parseInt(layoutIndex), true)
+        Options.layout = LAYOUTS[parseInt(layoutIndex)]
+     }
+    else{
+        $('#main-container').toggleClass('layout-0', true)
+        Options.layout = LAYOUTS[0]
+    }
+    $('#main-container').toggleClass('layout-'+parseInt(layoutIndex), true)
+
+    if(document.location.hash){
+        let list = document.location.hash.slice(1).split(',');
+        startupFill(list.length, list);
+        console.log("loading streams")
+    }
+    
+    
+    
 
     generateSelect();
 
@@ -63,6 +74,12 @@ $(document).ready(function(){
         let div2 = document.createElement('div');
         div2.setAttribute('class', 'layout-preview layout layout-'+i );
         div2.setAttribute('id', "layout-preview-" + i)
+        if(i === Options.layout.index)
+            div2.setAttribute('class', 'active-preview layout-preview layout layout-'+i );
+        else
+            div2.setAttribute('class', 'layout-preview layout layout-'+i );
+
+
         let s1 = document.createElement('div')
         s1.setAttribute('class', "stream-player major")
         s1.innerHTML = '1'
@@ -99,7 +116,10 @@ $(document).ready(function(){
 
     $("#layout-selection").owlCarousel({
         items:4,
-        responsiveBaseWidth: $('#setup-modal')
+        responsiveBaseWidth: $('#setup-modal'),
+        navigation: true,
+        navigationText: ["<", ">"],
+        pagination: false
 
     });
 

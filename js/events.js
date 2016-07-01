@@ -1,23 +1,11 @@
 clickRefresh = function(){
   if(Options.justStarted){
-    $('.stream-div').empty();
+    $('.welcome-div').toggleClass('hidden', true);
+    $('#main-container').toggleClass('hidden', false)
     Options.justStarted = false;
   }
-  let oldNumberStreams = Options.currentNumberStreams; 
-  if(Options.numberStreams === 1){
-    $('#single').toggleClass('hidden', false)
-    $('#multiple').toggleClass('hidden', true)
-    Options.currentNumberStreams = 1;
-  }
-  else{
-    $('#single').toggleClass('hidden', true)
-    $('#multiple').toggleClass('hidden', false)
-    Options.currentNumberStreams = 4;
-  }
 
-  if(Options.currentNumberStreams !== oldNumberStreams){
-    destroyPlayers();
-  }
+  
 
   if(Options.randomMode === 1){
     refreshStreams(Options.streamsList, randomStreams);
@@ -33,14 +21,13 @@ clickAddStream = function(){
     importFollows(url)
   }
   else{
-    if(indexOfStream($('#new-stream').val()) === -1){
-      Options.streamsList.push({
-        name: $('#new-stream').val(),
-        priority: 0
-      });
-
-    }
-  }
+    if(Options.streamsList.indexOfObject('name',$('#new-stream').val()) === -1)
+        Options.streamsList.unshift({
+                name: $('#new-stream').val(),
+                priority : 0
+              })
+           }
+  
   $('#new-stream').val('');
   saveStreams();
   generateSelect();
@@ -160,7 +147,7 @@ showMoreInstructions = function(){
 }
 
 clickLayout= function(n){
-  console.log(n)
+  Cookie.set('layout', n)
   for(i=0;i<LAYOUTS.length;i++){
     if(i==n){
       $('#layout-preview-'+i).toggleClass('active-preview', true);
@@ -169,5 +156,29 @@ clickLayout= function(n){
     else
       $('#layout-preview-'+i).toggleClass('active-preview', false);
   }
-}
 
+  for(i=0;i<LAYOUTS.length;i++){
+    if(i===Options.layout.index)
+      $('#main-container').toggleClass('layout-'+i, true);
+    else
+      $('#main-container').toggleClass('layout-'+i, false);
+  }
+  for(i=0;i<Options.layout.numStreams;i++){
+    if(Options.players[i])
+      Options.players[i].play();
+  }
+  for(i=Options.layout.numStreams;i<6;i++){
+    if(Options.players[i])
+      Options.players[i].pause();
+  }
+  } 
+
+  clickHideButton = function(){
+    Materialize.toast('Press ESCAPE to show the button', 10000)
+    $('#main-button').toggleClass('hidden', true);
+    document.addEventListener("keydown", function(event) {
+      if(event.which === 27)
+            $('#main-button').toggleClass('hidden', false);
+
+});
+  }

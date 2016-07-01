@@ -25,7 +25,7 @@
               alert("Nobody is live. Add some more channels!")
             }
             else{
-              fillStreamWindows(method(results, Options.numberStreams))
+              fillStreamWindows(method(results, Options.layout.numStreams))
             }
           }
         }
@@ -98,7 +98,7 @@
           quality:Options.quality,
           channel: featuredStreams[i]    
         };
-        var player = new Twitch.Player("stream" + Options.numberStreams + i, options);
+        var player = new Twitch.Player("stream" + i, options);
         if(Options.sound0&&i===0){
           player.setVolume(1);
         }
@@ -111,7 +111,7 @@
     }
     
 
-    if(Options.showChat){
+    if(Options.layout.chat){
       editChat(featuredStreams[0])
     }
   }
@@ -128,15 +128,14 @@
       success : function(r) {
         if(r.follows.length>0){
           for(i=0;i<r.follows.length;i++){
-            if(Options.streamsList.indexOf(r.follows[i].channel.display_name) === -1)
+            if(Options.streamsList.indexOfObject('name',r.follows[i].channel.display_name) === -1)
               Options.streamsList.push({
                 name: r.follows[i].channel.display_name,
-                priority: 0
+                priority : 0
               })
-          }
+           }
           if(r._links.next)
             importFollows(r._links.next)
-
           saveStreams();
           generateSelect();
 
@@ -146,23 +145,51 @@
   }
 
   startupFill = function(n, list){
-    $('.stream-div').empty();
+    $('.welcome-div').toggleClass('hidden', true);
+    $('#main-container').toggleClass('hidden', false)
     Options.justStarted = false;
-    let numberStreams = n;
-    if(n===1){
-      $('#single').toggleClass('hidden', false)
-      $('#multiple').toggleClass('hidden', true)
-      Options.currentNumberStreams = 1;
-
+    if(Options.layout.numStreams !== n){
+      switch(n){
+      case 1:
+        $('#main-container').toggleClass('layout-0', true);
+        Options.layout = LAYOUTS[0]
+        break;
+      case 2:
+        $('#main-container').toggleClass('layout-2', true);
+        Options.layout = LAYOUTS[2]
+        break;
+      case 3:
+        $('#main-container').toggleClass('layout-5', true);
+        Options.layout = LAYOUTS[5]
+        break;
+      case 4:
+        $('#main-container').toggleClass('layout-8', true);
+        Options.layout = LAYOUTS[8]
+        break;
+      case 5:
+        $('#main-container').toggleClass('layout-11', true);
+        Options.layout = LAYOUTS[11]
+        break;
+      case 6:
+        $('#main-container').toggleClass('layout-13', true);
+        Options.layout = LAYOUTS[13]
+        break;
+      }
     }
-    else{
-    $('#single').toggleClass('hidden', true)
-    $('#multiple').toggleClass('hidden', false)
-      Options.currentNumberStreams = 4;
-
-      numberStreams = 4;
-    }
+    
     fillStreamWindows(list)
+  }
+
+  addBatch = function(list){
+    let llist = list
+    for(i=0;i<llist.length;i++){
+      if(indexOfStream(llist[i] === -1)){
+        Options.streamsList.push({
+          name: llist[i],
+          priority: 0
+        })
+      }
+    }
   }
 
   setPriority = function(name, value){
@@ -171,7 +198,7 @@
 
 /*****************\
   General Helpers
-  \*****************/
+\*****************/
 
   capitalizeFirst = function(s){
     return s.charAt(0).toUpperCase() + s.slice(1)
@@ -199,21 +226,6 @@
   editChat = function(channel){
     if(channel){
       $('#chat-frame').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
-      $('#chat-div').toggleClass('hidden', false);
-      $('#single').toggleClass('s9', true);
-      $('#single').toggleClass('s12',false);
-      $('#multiple').toggleClass('s9', true);
-      $('#multiple').toggleClass('s12',false);
-      $('.fixed-action-btn').css('right', '30%');
-
-    }
-    else{
-      $('#chat-div').toggleClass('hidden', true);
-      $('#single').toggleClass('s9', false);
-      $('#single').toggleClass('s12',true);
-      $('#multiple').toggleClass('s9', false);
-      $('#multiple').toggleClass('s12',true);
-      $('.fixed-action-btn').css('right', '24px')
     }
   }
 
@@ -286,3 +298,10 @@
       }
     }
   }
+
+  Array.prototype.indexOfObject = function arrayObjectIndexOf(property, value) {
+    for (var i = 0, len = this.length; i < len; i++) {
+        if (this[i][property].toLowerCase() === value.toLowerCase()) return i;
+    }
+    return -1;
+}
