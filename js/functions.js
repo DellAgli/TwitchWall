@@ -25,7 +25,7 @@
               alert("Nobody is live. Add some more channels!")
             }
             else{
-              fillStreamWindows(method(results, Options.layout.numStreams))
+              fillStreamWindows(method(results, 6))
             }
           }
         }
@@ -85,10 +85,13 @@
   };
 
   fillStreamWindows = function(featuredStreams){
-    window.location = '#'+ featuredStreams.join()
-    for(i=0; i<featuredStreams.length;i++){
+    Options.playingChannels = featuredStreams
+    console.log(featuredStreams)
+    window.location = '#'+ featuredStreams.slice(0, Options.layout.numStreams).join() + ',layout-' + Options.layout.index
+    for(i=0; i<Options.layout.numStreams;i++){
       if(Options.players[i]){
-        Options.players[i].setChannel(featuredStreams[i])
+        if(Options.players[i].getChannel().toLowerCase() !== featuredStreams[i].toLowerCase())
+            Options.players[i].setChannel(featuredStreams[i])
       }
       else{
         var options = {
@@ -97,22 +100,26 @@
           volume: 0,
           quality:Options.quality,
           channel: featuredStreams[i]    
-        };
+        }
         var player = new Twitch.Player("stream" + i, options);
         if(Options.sound0&&i===0){
           player.setVolume(1);
         }
         else{
-          player.setVolume(0)
+          player.setVolume(0);
         }
+        player.play();
         Options.players[i]= player;
       }
       
     }
-    
-
     if(Options.layout.chat){
       editChat(featuredStreams[0])
+    }
+    for(i=Options.layout.numStreams; i<6;i++){
+      if(Options.players[i]){
+        Options.players[i].pause()
+      }
     }
   }
 
@@ -133,7 +140,7 @@
                 name: r.follows[i].channel.display_name,
                 priority : 0
               })
-           }
+          }
           if(r._links.next)
             importFollows(r._links.next)
           saveStreams();
@@ -144,37 +151,38 @@
     });
   }
 
-  startupFill = function(n, list){
+  startupFill = function(list, layout){
+    let n = list.length
     $('.welcome-div').toggleClass('hidden', true);
     $('#main-container').toggleClass('hidden', false)
     Options.justStarted = false;
-    if(Options.layout.numStreams !== n){
-      switch(n){
-      case 1:
-        $('#main-container').toggleClass('layout-0', true);
-        Options.layout = LAYOUTS[0]
+    if(layout){
+      clickLayout(layout)
+    }
+    else{
+      if(Options.layout.numStreams !== n){
+       switch(n){
+        case 1:
+        clickLayout(0)
         break;
-      case 2:
-        $('#main-container').toggleClass('layout-2', true);
-        Options.layout = LAYOUTS[2]
+        case 2:
+        clickLayout(2)
         break;
-      case 3:
-        $('#main-container').toggleClass('layout-5', true);
-        Options.layout = LAYOUTS[5]
+        case 3:
+        clickLayout(5)
         break;
-      case 4:
-        $('#main-container').toggleClass('layout-8', true);
-        Options.layout = LAYOUTS[8]
+        case 4:
+        clickLayout(8)
         break;
-      case 5:
-        $('#main-container').toggleClass('layout-11', true);
-        Options.layout = LAYOUTS[11]
+        case 5:
+        clickLayout(11)
         break;
-      case 6:
-        $('#main-container').toggleClass('layout-13', true);
-        Options.layout = LAYOUTS[13]
+        case 6:
+        clickLayout(13)
         break;
       }
+    }
+
     }
     
     fillStreamWindows(list)
@@ -196,9 +204,11 @@
     Options.streamsList[indexOfStream(name)].priority = value
   }
 
+
+
 /*****************\
   General Helpers
-\*****************/
+  \*****************/
 
   capitalizeFirst = function(s){
     return s.charAt(0).toUpperCase() + s.slice(1)
@@ -224,8 +234,9 @@
   }
 
   editChat = function(channel){
-    if(channel){
-      $('#chat-frame').attr('src', 'http://www.twitch.tv/' + channel + '/chat');
+    let url ='http://www.twitch.tv/' + channel + '/chat'
+    if(channel && $('#chat-frame').attr('src') !== url){
+      $('#chat-frame').attr('src', url);
     }
   }
 
@@ -301,7 +312,7 @@
 
   Array.prototype.indexOfObject = function arrayObjectIndexOf(property, value) {
     for (var i = 0, len = this.length; i < len; i++) {
-        if (this[i][property].toLowerCase() === value.toLowerCase()) return i;
+      if (this[i][property].toLowerCase() === value.toLowerCase()) return i;
     }
     return -1;
-}
+  }

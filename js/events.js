@@ -146,7 +146,7 @@ showMoreInstructions = function(){
   $('#show-more-button').toggleClass('hidden', true)
 }
 
-clickLayout= function(n){
+clickLayout = function(n){
   Cookie.set('layout', n)
   for(i=0;i<LAYOUTS.length;i++){
     if(i==n){
@@ -171,14 +171,24 @@ clickLayout= function(n){
     if(Options.players[i])
       Options.players[i].pause();
   }
+
+
+  if(!Options.justStarted)
+    fillStreamWindows(Options.playingChannels)
   } 
 
   clickHideButton = function(){
-    Materialize.toast('Press ESCAPE to show the button', 10000)
-    $('#main-button').toggleClass('hidden', true);
-    document.addEventListener("keydown", function(event) {
-      if(event.which === 27)
-            $('#main-button').toggleClass('hidden', false);
+    if(!Options.justStarted){
+      Materialize.toast('Press ESCAPE to show the button', 6000)
+      $('#main-button').toggleClass('hidden', true);
+      document.addEventListener("keydown", function(event) {
+        if(event.which === 27)
+          $('#main-button').toggleClass('hidden', false);
+      }); 
+    }
+    else{
+      Materialize.toast('Start watching before you hide the button', 6000)
 
-});
+    }
+
   }

@@ -25,8 +25,7 @@ Just tell Twitch Wall what streamers you enjoy and the web-page will automatical
 	* Check or uncheck the high priority button.
 4. Change other settings:
 	* Sound
-	* Number of streams
-	* Chat
+	* Layout and Number of Streams
 	* Stream Quality
 	* Auto Refresh
 	* Random Mode

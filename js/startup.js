@@ -6,6 +6,7 @@ Options = {
 	autoRefresh : null,
 	randomMode : 0,
     justStarted: true,
+    playingChannels : []
 }
 
 
@@ -59,13 +60,18 @@ $(document).ready(function(){
 
     if(document.location.hash){
         let list = document.location.hash.slice(1).split(',');
-        startupFill(list.length, list);
-        console.log("loading streams")
+        let layout = null;
+        if(list[list.length-1].substring(0,7) === "layout-"){
+            layout = parseInt(list[list.length-1].substring(7));
+            list.pop()
+        }
+        
+        console.log(list)
+        startupFill(list, layout);
     }
-    
-    
-    
 
+
+    
     generateSelect();
 
     for(i=0;i<LAYOUTS.length;i++){
@@ -121,6 +127,6 @@ $(document).ready(function(){
         navigationText: ["<", ">"],
         pagination: false
 
-    });
+    }); 
 
  });
