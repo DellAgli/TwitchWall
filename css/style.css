@@ -447,8 +447,18 @@ body{
   width: 80%!important;
 }
 
+.setup-modal .modal-content h4{
+  font-size: 32px;
+  margin-bottom: 2px;
+}
+
+.setup-top .input-field h5{
+  margin-bottom: 0px;
+  margin-top: 2px;
+}
+
 .setup-top{
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 .checkbox-twitch-purple[type="checkbox"].filled-in:checked + label:after{

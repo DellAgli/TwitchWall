@@ -90,34 +90,6 @@ changeRandomMode = function(){
   }
 }
 
-changeChat = function(){
-  if($('#chat-toggle').is(':checked')){
-    Options.showChat = 1;
-    Cookie.set('chat', 1)
-    if(Options.players[0].getChannel())
-      editChat(Options.players[0].getChannel())
-  }
-  else{
-    Options.showChat = 0;
-    Cookie.set('chat', 0)
-    editChat(null);
-  }
-}
-
-changeNumStreams = function(){
-  if($('#number-streams').is(':checked')){
-    Options.numberStreams = 1;
-    Cookie.set('numStreams', 1)
-  }
-  else{
-    Options.numberStreams = 4;
-    Cookie.set('numStreams', 4)
-  }
-  for(i-0;i<Options.players.length;i++){
-    Options.players[i].pause()
-  }
-}
-
 changePriority = function(){
   if($('#priority-select').is(':checked')){
     setPriority($('#edit-stream-select').find(':selected').text(),1)

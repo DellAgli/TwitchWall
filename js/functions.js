@@ -91,25 +91,28 @@
     for(i=0; i<Options.layout.numStreams;i++){
       if(Options.players[i]){
         if(Options.players[i].getChannel().toLowerCase() !== featuredStreams[i].toLowerCase())
-            Options.players[i].setChannel(featuredStreams[i])
+          Options.players[i].setChannel(featuredStreams[i])
       }
       else{
-        var options = {
-          height:'100%',
-          width:'100%',
-          volume: 0,
-          quality:Options.quality,
-          channel: featuredStreams[i]    
+        if(featuredStreams[i] ){
+          var options = {
+            height:'100%',
+            width:'100%',
+            volume: 0,
+            quality:Options.quality,
+            channel: featuredStreams[i]    
+          }
+          var player = new Twitch.Player("stream" + i, options);
+          if(Options.sound0&&i===0){
+            player.setVolume(1);
+          }
+          else{
+            player.setVolume(0);
+          }
+          player.play();
+          Options.players[i]= player;
         }
-        var player = new Twitch.Player("stream" + i, options);
-        if(Options.sound0&&i===0){
-          player.setVolume(1);
-        }
-        else{
-          player.setVolume(0);
-        }
-        player.play();
-        Options.players[i]= player;
+
       }
       
     }
@@ -183,26 +186,26 @@
       }
     }
 
-    }
-    
-    fillStreamWindows(list)
   }
+  
+  fillStreamWindows(list)
+}
 
-  addBatch = function(list){
-    let llist = list
-    for(i=0;i<llist.length;i++){
-      if(indexOfStream(llist[i] === -1)){
-        Options.streamsList.push({
-          name: llist[i],
-          priority: 0
-        })
-      }
+addBatch = function(list){
+  let llist = list
+  for(i=0;i<llist.length;i++){
+    if(indexOfStream(llist[i] === -1)){
+      Options.streamsList.push({
+        name: llist[i],
+        priority: 0
+      })
     }
   }
+}
 
-  setPriority = function(name, value){
-    Options.streamsList[indexOfStream(name)].priority = value
-  }
+setPriority = function(name, value){
+  Options.streamsList[indexOfStream(name)].priority = value
+}
 
 
 
